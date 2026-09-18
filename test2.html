@@ -1,0 +1,4869 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>수험생 키우기 2027 - 완벽 수능 에디션</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Jua&family=Noto+Sans+KR:wght@400;700;900&display=swap');
+
+:root {
+  --kor-c:#60a5fa;
+  --kor-bg:#eff6ff;
+  --math-c:#fb7185;
+  --math-bg:#fff1f2;
+  --eng-c:#fbbf24;
+  --eng-bg:#fffbeb;
+  --tam-c:#34d399;
+  --tam-bg:#ecfdf5;
+  --gpa-c:#a78bfa;
+  --gpa-bg:#f5f3ff;
+  --spec-c:#f97316;
+  --spec-bg:#fff7ed;
+  --hp-c:#2dd4bf;
+  --stress-c:#f43f5e;
+  --primary:#6366f1;
+  --primary-shadow:#4f46e5;
+  --bg:#f0f4f8;
+  --card-bg:#ffffff;
+  --text:#334155;
+  --border:#e2e8f0;
+}
+
+* {
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:'Noto Sans KR',sans-serif;
+}
+
+body {
+  background:var(--bg);
+  color:var(--text);
+  display:flex;
+  justify-content:center;
+  padding:12px;
+}
+
+.app-container {
+  width:100%;
+  max-width:520px;
+  background:white;
+  border-radius:24px;
+  box-shadow:0 12px 35px -10px rgba(0,0,0,.15);
+  overflow:hidden;
+  height:96vh;
+  display:flex;
+  flex-direction:column;
+  position:relative;
+  border:4px solid white;
+}
+
+.screen {
+  display:none;
+  padding:16px;
+  flex:1;
+  flex-direction:column;
+  gap:12px;
+  overflow-y:auto;
+}
+
+.screen.active {
+  display:flex;
+}
+
+label {
+  font-weight:800;
+  font-size:.82rem;
+  color:#475569;
+}
+
+select,
+input[type="text"] {
+  width:100%;
+  padding:10px;
+  border:2px solid var(--border);
+  border-radius:12px;
+  font-size:.9rem;
+  font-weight:700;
+  margin-top:3px;
+  outline:none;
+  background:#f8fafc;
+}
+
+select:focus,
+input[type="text"]:focus {
+  border-color:var(--primary);
+  background:white;
+}
+
+button {
+  font-family:inherit;
+}
+
+.btn {
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:14px;
+  background:var(--primary);
+  color:white;
+  font-size:1.05rem;
+  font-weight:800;
+  cursor:pointer;
+  box-shadow:0 5px 0 var(--primary-shadow);
+  margin-top:4px;
+}
+
+.btn:active {
+  transform:translateY(5px);
+  box-shadow:0 0 0 var(--primary-shadow);
+}
+
+.start-title {
+  text-align:center;
+  padding:18px 5px 10px;
+}
+
+.start-title h1 {
+  font-family:'Jua',sans-serif;
+  font-size:2rem;
+  color:#1e293b;
+}
+
+.start-title p {
+  margin-top:5px;
+  font-size:.75rem;
+  color:#64748b;
+  font-weight:700;
+}
+
+.setup-card {
+  background:#f8fafc;
+  border:2px solid var(--border);
+  padding:14px;
+  border-radius:18px;
+}
+
+.setup-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.full {
+  grid-column:span 2;
+}
+
+.track-tab-container {
+  display:flex;
+  gap:8px;
+  margin-top:4px;
+}
+
+.track-tab {
+  flex:1;
+  padding:10px;
+  border:2px solid var(--border);
+  border-radius:12px;
+  background:#f8fafc;
+  font-weight:900;
+  font-size:.95rem;
+  cursor:pointer;
+  text-align:center;
+  color:#64748b;
+}
+
+.track-tab.active {
+  background:#eef2ff;
+  border-color:var(--primary);
+  color:var(--primary);
+}
+
+.hud {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:#f8fafc;
+  padding:10px 16px;
+  border-radius:16px;
+  border:2px solid var(--border);
+}
+
+.hud-time {
+  color:var(--primary);
+  font-size:1.3rem;
+  font-weight:900;
+  font-family:'Jua',sans-serif;
+}
+
+.hud-sub {
+  font-size:.65rem;
+  color:#64748b;
+  font-weight:800;
+}
+
+.strategy-btn {
+  background:white;
+  border:2px solid var(--primary);
+  color:var(--primary);
+  padding:6px 12px;
+  border-radius:20px;
+  font-size:.75rem;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.stat-card {
+  background:white;
+  padding:14px;
+  border-radius:20px;
+  border:2px solid var(--border);
+}
+
+.stat-row {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  font-size:.82rem;
+  font-weight:800;
+  margin-bottom:8px;
+  gap:7px;
+}
+
+.stat-name {
+  width:75px;
+}
+
+.stat-value {
+  width:48px;
+  text-align:right;
+  font-weight:900;
+}
+
+.bar-bg {
+  flex:1;
+  height:14px;
+  background:#f1f5f9;
+  border-radius:10px;
+  overflow:hidden;
+  border:1px solid var(--border);
+}
+
+.bar-fill {
+  height:100%;
+  transition:width .4s ease;
+  border-radius:10px;
+}
+
+.c-kor {color:var(--kor-c);}
+.bg-kor {background:var(--kor-c);}
+.c-math {color:var(--math-c);}
+.bg-math {background:var(--math-c);}
+.c-eng {color:var(--eng-c);}
+.bg-eng {background:var(--eng-c);}
+.c-tam {color:var(--tam-c);}
+.bg-tam {background:var(--tam-c);}
+.c-gpa {color:var(--gpa-c);}
+.bg-gpa {background:var(--gpa-c);}
+.c-spec {color:var(--spec-c);}
+.bg-spec {background:var(--spec-c);}
+.bg-hp {background:var(--hp-c);}
+.bg-stress {background:var(--stress-c);}
+
+.divider {
+  border:0;
+  border-top:1px solid #e2e8f0;
+  margin:5px 0 10px;
+}
+
+.activity-box {
+  padding:10px 12px;
+  border-radius:13px;
+  background:#fff7ed;
+  border:2px solid #fed7aa;
+  color:#c2410c;
+  font-size:.72rem;
+  line-height:1.45;
+  font-weight:800;
+}
+
+.action-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:8px;
+  margin-top:auto;
+  padding-bottom:6px;
+}
+
+.action-btn {
+  padding:12px 8px;
+  border:2px solid;
+  border-radius:14px;
+  font-weight:800;
+  cursor:pointer;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:3px;
+  font-size:.85rem;
+  background:white;
+}
+
+.action-btn:active {
+  transform:translateY(4px);
+}
+
+.action-btn:disabled {
+  opacity:.45;
+  cursor:not-allowed;
+}
+
+.btn-kor {
+  border-color:var(--kor-c);
+  color:var(--kor-c);
+  background:var(--kor-bg);
+  box-shadow:0 4px 0 var(--kor-c);
+}
+
+.btn-math {
+  border-color:var(--math-c);
+  color:var(--math-c);
+  background:var(--math-bg);
+  box-shadow:0 4px 0 var(--math-c);
+}
+
+.btn-eng {
+  border-color:var(--eng-c);
+  color:#b45309;
+  background:var(--eng-bg);
+  box-shadow:0 4px 0 var(--eng-c);
+}
+
+.btn-tam {
+  border-color:var(--tam-c);
+  color:#059669;
+  background:var(--tam-bg);
+  box-shadow:0 4px 0 var(--tam-c);
+}
+
+.btn-spec {
+  border-color:var(--spec-c);
+  color:var(--spec-c);
+  background:var(--spec-bg);
+  box-shadow:0 4px 0 var(--spec-c);
+}
+
+.btn-rest {
+  border-color:#cbd5e1;
+  color:#475569;
+  background:#f8fafc;
+  grid-column:span 2;
+  box-shadow:0 4px 0 #94a3b8;
+}
+
+.action-desc {
+  font-size:.61rem;
+  font-weight:700;
+  opacity:.8;
+  background:rgba(255,255,255,.7);
+  padding:2px 5px;
+  border-radius:6px;
+}
+
+/* 입시 검색 */
+
+.search-box {
+  position:sticky;
+  top:0;
+  z-index:4;
+  background:white;
+  padding-bottom:7px;
+}
+
+.search-input {
+  width:100%;
+  padding:11px 13px;
+  border:2px solid var(--border);
+  border-radius:13px;
+  outline:none;
+  font-weight:700;
+  background:#f8fafc;
+}
+
+.search-input:focus {
+  border-color:var(--primary);
+  background:white;
+}
+
+.filter-row {
+  display:flex;
+  gap:6px;
+  overflow-x:auto;
+  padding:3px 0;
+}
+
+.filter-btn {
+  white-space:nowrap;
+  padding:7px 10px;
+  border-radius:9px;
+  border:1px solid var(--border);
+  background:#f8fafc;
+  color:#64748b;
+  font-size:.65rem;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.filter-btn.active {
+  background:#eef2ff;
+  border-color:var(--primary);
+  color:var(--primary);
+}
+
+.recommend-panel {
+  background:linear-gradient(135deg,#eef2ff,#f5f3ff);
+  border:2px solid #c7d2fe;
+  border-radius:16px;
+  padding:12px;
+}
+
+.recommend-title {
+  font-family:'Jua',sans-serif;
+  font-size:1.05rem;
+  color:#3730a3;
+  margin-bottom:7px;
+}
+
+.recommend-item {
+  background:white;
+  border:1px solid #e0e7ff;
+  border-radius:11px;
+  padding:9px;
+  margin-top:6px;
+  cursor:pointer;
+}
+
+.recommend-item:active {
+  transform:scale(.99);
+}
+
+.recommend-head {
+  display:flex;
+  justify-content:space-between;
+  gap:6px;
+  align-items:center;
+}
+
+.recommend-name {
+  font-size:.75rem;
+  font-weight:900;
+  color:#1e293b;
+}
+
+.recommend-reason {
+  font-size:.61rem;
+  color:#64748b;
+  line-height:1.45;
+  margin-top:4px;
+}
+
+.list-container {
+  max-height:430px;
+  overflow-y:auto;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  padding:3px;
+}
+
+.list-item {
+  padding:12px;
+  border:2px solid var(--border);
+  border-radius:14px;
+  background:white;
+}
+
+.list-item.selected {
+  border-color:var(--primary);
+  background:#eef2ff;
+}
+
+.uni-head {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:8px;
+}
+
+.uni-name {
+  font-weight:900;
+  color:#1e293b;
+}
+
+.dept-name {
+  font-size:.7rem;
+  color:#64748b;
+  font-weight:800;
+  margin-top:2px;
+}
+
+.badge {
+  padding:3px 6px;
+  border-radius:6px;
+  font-size:.65rem;
+  font-weight:900;
+  display:inline-block;
+}
+
+.b-safe {
+  background:#dcfce7;
+  color:#15803d;
+}
+
+.b-mid {
+  background:#fef9c3;
+  color:#a16207;
+}
+
+.b-hard {
+  background:#fee2e2;
+  color:#b91c1c;
+}
+
+.comp-rate {
+  color:#ef4444;
+  font-weight:900;
+  background:#fef2f2;
+  padding:2px 6px;
+  border-radius:6px;
+  font-size:.68rem;
+}
+
+.cut-info {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:5px;
+  margin-top:8px;
+}
+
+.cut-box {
+  background:#f8fafc;
+  border-radius:8px;
+  padding:6px;
+  font-size:.62rem;
+  font-weight:800;
+  color:#475569;
+}
+
+.cut-box strong {
+  display:block;
+  color:#1e293b;
+  font-size:.72rem;
+}
+
+.admission-type {
+  display:flex;
+  gap:6px;
+  margin-top:9px;
+}
+
+.admission-type button {
+  flex:1;
+  padding:9px 5px;
+  border-radius:10px;
+  border:2px solid #cbd5e1;
+  background:#f8fafc;
+  color:#64748b;
+  font-size:.68rem;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.admission-type button.active {
+  background:#eef2ff;
+  border-color:var(--primary);
+  color:var(--primary);
+}
+
+.admission-type button.active.jong {
+  background:#fff7ed;
+  border-color:#f97316;
+  color:#ea580c;
+}
+
+.admission-type small {
+  display:block;
+  font-size:.55rem;
+  margin-top:3px;
+  opacity:.8;
+}
+
+.detail-btn {
+  width:100%;
+  margin-top:8px;
+  padding:8px;
+  border:1px solid var(--border);
+  background:#f8fafc;
+  border-radius:9px;
+  font-size:.63rem;
+  font-weight:900;
+  color:#475569;
+  cursor:pointer;
+}
+
+.recommend-box {
+  margin-top:8px;
+  padding:8px;
+  background:#f8fafc;
+  border:1px solid var(--border);
+  border-radius:9px;
+  font-size:.66rem;
+  line-height:1.5;
+  font-weight:800;
+}
+
+.reg-footer {
+  position:sticky;
+  bottom:0;
+  background:white;
+  padding-top:8px;
+}
+
+.result-box {
+  display:block;
+  margin-top:8px;
+  padding:10px;
+  border:2px solid;
+  border-radius:10px;
+  text-align:center;
+  font-weight:900;
+  font-size:.85rem;
+  line-height:1.5;
+}
+
+.result-pass {
+  border-color:#22c55e;
+  background:#f0fdf4;
+  color:#15803d;
+}
+
+.result-wait {
+  border-color:#f59e0b;
+  background:#fffbeb;
+  color:#a16207;
+}
+
+.result-fail {
+  border-color:#ef4444;
+  background:#fef2f2;
+  color:#b91c1c;
+}
+
+.result-meta {
+  font-size:.61rem;
+  font-weight:700;
+  margin-top:4px;
+  line-height:1.5;
+}
+
+.detail-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:6px;
+}
+
+.detail-card {
+  background:#f8fafc;
+  border:1px solid var(--border);
+  border-radius:9px;
+  padding:8px;
+  font-size:.61rem;
+  line-height:1.45;
+  font-weight:700;
+}
+
+.detail-card strong {
+  display:block;
+  font-size:.68rem;
+  color:#1e293b;
+  margin-bottom:2px;
+}
+
+.detail-section {
+  margin-top:9px;
+  padding:10px;
+  background:white;
+  border:1px solid var(--border);
+  border-radius:11px;
+}
+
+.detail-section-title {
+  font-size:.72rem;
+  font-weight:900;
+  color:#1e293b;
+  margin-bottom:6px;
+}
+
+.detail-list {
+  font-size:.63rem;
+  line-height:1.6;
+  color:#475569;
+  font-weight:700;
+}
+
+.overlay {
+  position:absolute;
+  inset:0;
+  background:rgba(15,23,42,.7);
+  display:none;
+  z-index:100;
+  backdrop-filter:blur(4px);
+}
+
+.modal {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  background:white;
+  padding:20px;
+  border-radius:24px;
+  width:92%;
+  max-height:90%;
+  overflow-y:auto;
+  display:none;
+  flex-direction:column;
+  gap:10px;
+  z-index:110;
+  box-shadow:0 25px 50px -12px rgba(0,0,0,.4);
+}
+
+.modal-title {
+  font-size:1.25rem;
+  font-weight:900;
+  color:#1e293b;
+  text-align:center;
+  font-family:'Jua',sans-serif;
+}
+
+.event-small {
+  padding:8px 10px;
+  border-radius:10px;
+  background:#f8fafc;
+  border:1px solid var(--border);
+  font-size:.72rem;
+  font-weight:800;
+  line-height:1.5;
+}
+
+.info-line {
+  font-size:.67rem;
+  color:#64748b;
+  font-weight:700;
+  line-height:1.5;
+}
+
+.modal-actions {
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+  margin-top:5px;
+}
+
+.secondary-btn {
+  width:100%;
+  padding:12px;
+  border:2px solid var(--border);
+  border-radius:12px;
+  background:#f8fafc;
+  color:#475569;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.orange-btn {
+  background:#fff7ed;
+  border-color:#f97316;
+  color:#ea580c;
+}
+
+.green-btn {
+  background:#f0fdf4;
+  border-color:#22c55e;
+  color:#15803d;
+}
+
+.blue-btn {
+  background:#eff6ff;
+  border-color:#60a5fa;
+  color:#2563eb;
+}
+
+.red-btn {
+  background:#fef2f2;
+  border-color:#f87171;
+  color:#dc2626;
+}
+
+/* 시험 애니메이션 */
+
+.exam-stage {
+  text-align:center;
+  padding:12px 5px;
+}
+
+.exam-icon {
+  font-size:4rem;
+  animation:floatExam 1.2s ease-in-out infinite;
+}
+
+@keyframes floatExam {
+  0%,100% {transform:translateY(0);}
+  50% {transform:translateY(-8px);}
+}
+
+.exam-phase {
+  font-family:'Jua',sans-serif;
+  font-size:1.1rem;
+  color:#1e293b;
+  margin-top:8px;
+}
+
+.exam-progress {
+  height:13px;
+  background:#e2e8f0;
+  border-radius:20px;
+  overflow:hidden;
+  margin-top:12px;
+}
+
+.exam-progress-fill {
+  width:0%;
+  height:100%;
+  background:var(--primary);
+  transition:width .5s ease;
+}
+
+.exam-paper {
+  background:#fff;
+  border:2px solid #cbd5e1;
+  border-radius:12px;
+  padding:12px;
+  margin-top:12px;
+  font-size:.68rem;
+  line-height:1.6;
+  text-align:left;
+  animation:paperIn .5s ease;
+}
+
+@keyframes paperIn {
+  from {
+    opacity:0;
+    transform:translateY(12px) rotate(1deg);
+  }
+  to {
+    opacity:1;
+    transform:translateY(0) rotate(0);
+  }
+}
+
+.exam-omr {
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:5px;
+  margin-top:10px;
+}
+
+.omr-dot {
+  height:12px;
+  border-radius:50%;
+  background:#cbd5e1;
+  animation:omrBlink .8s infinite alternate;
+}
+
+@keyframes omrBlink {
+  from {opacity:.3;}
+  to {opacity:1;}
+}
+
+.loading-container {
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  padding:30px;
+  text-align:center;
+}
+
+.spinner {
+  width:45px;
+  height:45px;
+  border:5px solid var(--border);
+  border-top-color:var(--primary);
+  border-radius:50%;
+  animation:spin .8s linear infinite;
+}
+
+@keyframes spin {
+  to {transform:rotate(360deg);}
+}
+
+.certificate {
+  border:8px solid #fcd34d;
+  padding:22px;
+  background:#fffdf2;
+  text-align:center;
+  border-radius:16px;
+  position:relative;
+}
+
+.cert-title {
+  font-size:2rem;
+  font-weight:900;
+  color:#1e293b;
+  margin-bottom:12px;
+  font-family:'Jua',sans-serif;
+}
+
+.cert-body {
+  font-size:1rem;
+  line-height:1.7;
+  text-align:left;
+  margin-bottom:20px;
+  font-weight:700;
+  color:#334155;
+}
+
+.cert-seal {
+  position:absolute;
+  bottom:18px;
+  right:18px;
+  width:65px;
+  height:65px;
+  background:#dc2626;
+  border-radius:50%;
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  font-size:1.1rem;
+  transform:rotate(-10deg);
+}
+
+@media(max-height:700px) {
+  .app-container {
+    height:98vh;
+  }
+
+  .screen {
+    gap:8px;
+    padding:12px;
+  }
+
+  .action-btn {
+    padding:9px 6px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app-container">
+
+<section id="setupScreen" class="screen active">
+
+  <div class="start-title">
+    <h1>📚 수험생 키우기 2027</h1>
+    <p>내 성적을 직접 키워서 원하는 대학에 도전하자</p>
+  </div>
+
+  <div class="setup-card">
+
+    <label>수험생 이름</label>
+    <input id="playerName" type="text" placeholder="이름을 입력하세요">
+
+    <div style="height:10px"></div>
+
+    <label>계열</label>
+
+    <div class="track-tab-container">
+      <button id="trackMoon" class="track-tab active" onclick="setTrack('문과')">
+        📖 문과
+      </button>
+      <button id="trackLee" class="track-tab" onclick="setTrack('이과')">
+        💻 이과
+      </button>
+    </div>
+
+    <div style="height:10px"></div>
+
+    <div class="setup-grid">
+
+      <div>
+        <label>국어 선택</label>
+        <select id="korSub">
+          <option>화법과 작문</option>
+          <option>언어와 매체</option>
+        </select>
+      </div>
+
+      <div>
+        <label>수학 선택</label>
+        <select id="mathSub">
+          <option>확률과 통계</option>
+          <option>미적분</option>
+          <option>기하</option>
+        </select>
+      </div>
+
+      <div>
+        <label>탐구 1</label>
+        <select id="tam1">
+          <option>생활과 윤리</option>
+          <option>사회문화</option>
+          <option>한국지리</option>
+          <option>물리학Ⅰ</option>
+          <option>화학Ⅰ</option>
+          <option>생명과학Ⅰ</option>
+          <option>지구과학Ⅰ</option>
+        </select>
+      </div>
+
+      <div>
+        <label>탐구 2</label>
+        <select id="tam2">
+          <option>사회문화</option>
+          <option>생활과 윤리</option>
+          <option>경제</option>
+          <option>물리학Ⅰ</option>
+          <option>화학Ⅰ</option>
+          <option>생명과학Ⅰ</option>
+          <option>지구과학Ⅰ</option>
+        </select>
+      </div>
+
+      <div class="full">
+        <label>제2외국어</label>
+        <select id="langSub">
+          <option>응시 안 함</option>
+          <option>일본어Ⅰ</option>
+          <option>중국어Ⅰ</option>
+          <option>한문Ⅰ</option>
+        </select>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="setup-card">
+    <label>입시 전략</label>
+    <select id="strategy">
+      <option value="both">⚖️ 수시 + 정시 병행</option>
+      <option value="susi">🎯 수시 집중</option>
+      <option value="jeongsi">📊 정시 집중</option>
+    </select>
+  </div>
+
+  <div class="event-small">
+    💡 <b>게임 방식</b><br>
+    공부하면 수능 성적이 올라가고, 학교 활동을 챙기면 세특이 성장합니다.<br>
+    체력과 스트레스도 함께 관리해야 합니다.
+  </div>
+
+  <button class="btn" onclick="startGame()">2027 입시 시작하기 🚀</button>
+
+</section>
+
+
+<section id="gameScreen" class="screen">
+
+  <div class="hud">
+
+    <div>
+      <div id="dayText" class="hud-time">D-300</div>
+      <div id="dateText" class="hud-sub">2026년 12월</div>
+    </div>
+
+    <button class="strategy-btn" onclick="changeStrategy()">
+      <span id="strategyText">수시+정시</span>
+    </button>
+
+  </div>
+
+  <div class="stat-card">
+
+    <div class="stat-row">
+      <span class="stat-name c-gpa">내신</span>
+      <div class="bar-bg">
+        <div id="gpaBar" class="bar-fill bg-gpa"></div>
+      </div>
+      <span id="gpaValue" class="stat-value">4.50</span>
+    </div>
+
+    <div class="stat-row">
+      <span class="stat-name c-spec">세특</span>
+      <div class="bar-bg">
+        <div id="specBar" class="bar-fill bg-spec"></div>
+      </div>
+      <span id="specValue" class="stat-value">22</span>
+    </div>
+
+    <hr class="divider">
+
+    <div class="stat-row">
+      <span class="stat-name c-kor">국어</span>
+      <div class="bar-bg">
+        <div id="korBar" class="bar-fill bg-kor"></div>
+      </div>
+      <span id="korValue" class="stat-value">22</span>
+    </div>
+
+    <div class="stat-row">
+      <span class="stat-name c-math">수학</span>
+      <div class="bar-bg">
+        <div id="mathBar" class="bar-fill bg-math"></div>
+      </div>
+      <span id="mathValue" class="stat-value">22</span>
+    </div>
+
+    <div class="stat-row">
+      <span class="stat-name c-eng">영어</span>
+      <div class="bar-bg">
+        <div id="engBar" class="bar-fill bg-eng"></div>
+      </div>
+      <span id="engValue" class="stat-value">22</span>
+    </div>
+
+    <div class="stat-row">
+      <span class="stat-name c-tam">탐구1</span>
+      <div class="bar-bg">
+        <div id="tam1Bar" class="bar-fill bg-tam"></div>
+      </div>
+      <span id="tam1Value" class="stat-value">22</span>
+    </div>
+
+    <div class="stat-row">
+      <span class="stat-name c-tam">탐구2</span>
+      <div class="bar-bg">
+        <div id="tam2Bar" class="bar-fill bg-tam"></div>
+      </div>
+      <span id="tam2Value" class="stat-value">22</span>
+    </div>
+
+    <hr class="divider">
+
+    <div class="stat-row">
+      <span class="stat-name">❤️ 체력</span>
+      <div class="bar-bg">
+        <div id="hpBar" class="bar-fill bg-hp"></div>
+      </div>
+      <span id="hpValue" class="stat-value">100</span>
+    </div>
+
+    <div class="stat-row">
+      <span class="stat-name">🔥 스트레스</span>
+      <div class="bar-bg">
+        <div id="stressBar" class="bar-fill bg-stress"></div>
+      </div>
+      <span id="stressValue" class="stat-value">0</span>
+    </div>
+
+  </div>
+
+  <div id="activityText" class="activity-box">
+    학교 활동을 꾸준히 하면 세특이 성장합니다.
+  </div>
+
+  <div class="action-grid">
+
+    <button id="korBtn" class="action-btn btn-kor" onclick="study('kor')">
+      📘 <span>국어 공부</span>
+      <span class="action-desc">성적 상승</span>
+    </button>
+
+    <button id="mathBtn" class="action-btn btn-math" onclick="study('math')">
+      📕 <span>수학 공부</span>
+      <span class="action-desc">성적 상승</span>
+    </button>
+
+    <button id="engBtn" class="action-btn btn-eng" onclick="study('eng')">
+      📙 <span>영어 공부</span>
+      <span class="action-desc">성적 상승</span>
+    </button>
+
+    <button id="tam1Btn" class="action-btn btn-tam" onclick="study('tam1')">
+      📗 <span>탐구1 공부</span>
+      <span class="action-desc">성적 상승</span>
+    </button>
+
+    <button id="tam2Btn" class="action-btn btn-tam" onclick="study('tam2')">
+      📗 <span>탐구2 공부</span>
+      <span class="action-desc">성적 상승</span>
+    </button>
+
+    <button id="activityBtn" class="action-btn btn-spec" onclick="study('activity')">
+      📝 <span>학교 활동 챙기기</span>
+      <span class="action-desc">세특 상승</span>
+    </button>
+
+    <button class="action-btn btn-rest" onclick="rest()">
+      🛌 <span>맛집 탐방 & 휴식</span>
+      <span class="action-desc">체력 회복 · 스트레스 감소</span>
+    </button>
+
+  </div>
+
+</section>
+
+
+<section id="resultScreen" class="screen">
+
+  <div class="start-title">
+    <h1>🎓 입시 결과</h1>
+    <p id="resultSubtitle">2027학년도 최종 결과</p>
+  </div>
+
+  <div id="finalResultContent"></div>
+
+  <button class="btn" onclick="showCertificate()">
+    🏆 수험생 기록 보기
+  </button>
+
+</section>
+
+
+<div id="overlay" class="overlay"></div>
+
+<div id="modal" class="modal">
+
+  <div id="modalTitle" class="modal-title"></div>
+
+  <div id="modalBody"></div>
+
+  <div id="modalActions" class="modal-actions"></div>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   UTIL
+========================================================= */
+
+function rand(min,max) {
+  return Math.random() * (max-min) + min;
+}
+
+function randInt(min,max) {
+  return Math.floor(rand(min,max+1));
+}
+
+function clamp(v,min,max) {
+  return Math.max(min,Math.min(max,v));
+}
+
+function round1(v) {
+  return Math.round(v*10)/10;
+}
+
+function money(v) {
+  return Math.round(v/1000)*1000;
+}
+
+
+/* =========================================================
+   대학 DB
+========================================================= */
+
+const baseUniversities = [
+  ["서울대",98.5,1.10,80000],
+  ["연세대",96.5,1.40,90000],
+  ["고려대",96.0,1.50,90000],
+  ["성균관대",94.5,1.70,80000],
+  ["한양대",93.5,1.90,80000],
+  ["중앙대",92.0,2.10,75000],
+  ["경희대",90.5,2.30,75000],
+  ["건국대",88.0,2.50,70000],
+  ["동국대",87.0,2.60,70000],
+  ["홍익대",88.5,2.40,70000],
+  ["국민대",83.5,3.00,65000],
+  ["숭실대",85.0,2.80,65000],
+  ["인하대",84.5,2.70,65000],
+  ["아주대",86.0,2.50,65000],
+  ["가천대",80.0,3.30,65000],
+  ["부산대",83.0,2.90,45000],
+  ["경북대",82.0,3.00,45000],
+  ["한림대",71.0,4.20,50000],
+  ["한신대",68.0,4.50,50000],
+  ["한경국립대",70.0,4.30,40000]
+];
+
+const departments = {
+  "문과":[
+    "경영학과",
+    "경제학과",
+    "미디어커뮤니케이션",
+    "행정학과"
+  ],
+  "이과":[
+    "소프트웨어학과",
+    "인공지능학과",
+    "컴퓨터공학부",
+    "전자공학과",
+    "의예과"
+  ]
+};
+
+const departmentInfo = {
+  "경영학과":{
+    desc:"기업·경제·마케팅·재무 등 경영 전반을 배우는 전공",
+    career:"기획·마케팅·금융·회계·공공기관"
+  },
+  "경제학과":{
+    desc:"경제 현상과 시장 구조, 정책과 데이터를 분석하는 전공",
+    career:"금융·공공기관·데이터·연구·기업기획"
+  },
+  "미디어커뮤니케이션":{
+    desc:"미디어 콘텐츠와 커뮤니케이션, 디지털 플랫폼을 다루는 전공",
+    career:"콘텐츠·광고·홍보·미디어·플랫폼"
+  },
+  "행정학과":{
+    desc:"정부와 공공정책, 행정 시스템을 연구하는 전공",
+    career:"공공기관·공무원·정책·기업기획"
+  },
+  "소프트웨어학과":{
+    desc:"프로그래밍과 소프트웨어 시스템을 설계하고 구현하는 전공",
+    career:"소프트웨어·웹·앱·AI·데이터"
+  },
+  "인공지능학과":{
+    desc:"머신러닝, 딥러닝, 데이터와 AI 시스템을 배우는 전공",
+    career:"AI·컴퓨터비전·데이터·연구·소프트웨어"
+  },
+  "컴퓨터공학부":{
+    desc:"컴퓨터 구조부터 알고리즘, 운영체제, 네트워크, 소프트웨어까지 폭넓게 배우는 전공",
+    career:"SW·웹·서버·보안·AI·시스템"
+  },
+  "전자공학과":{
+    desc:"전자회로, 반도체, 임베디드, 통신과 하드웨어를 다루는 전공",
+    career:"반도체·전자·임베디드·통신·로봇"
+  },
+  "의예과":{
+    desc:"의학 교육을 위한 기초 의학 및 의학 전공 과정으로 이어지는 모집단위",
+    career:"의료·의학·연구"
+  }
+};
+
+let uniDB = [];
+
+function buildUniDB() {
+
+  uniDB = [];
+
+  baseUniversities.forEach((base,index)=>{
+
+    const [univ,baseScore,baseGpa,baseFee] = base;
+
+    ["문과","이과"].forEach(track=>{
+
+      departments[track].forEach((dept,deptIndex)=>{
+
+        let score = baseScore + rand(-1.1,1.1);
+
+        if(
+          dept.includes("인공지능") ||
+          dept.includes("컴퓨터") ||
+          dept.includes("소프트웨어")
+        ) {
+          score += 1.4;
+        }
+
+        if(dept === "의예과") {
+          score = 99.2 + rand(-.2,.25);
+        }
+
+        score = clamp(score,60,99.8);
+
+        let gyoCut = baseGpa + rand(-.10,.10);
+        let jongCut = gyoCut + rand(.25,.42);
+
+        if(
+          dept.includes("인공지능") ||
+          dept.includes("컴퓨터") ||
+          dept.includes("소프트웨어")
+        ) {
+          gyoCut -= .05;
+          jongCut += .03;
+        }
+
+        if(dept === "의예과") {
+          gyoCut = 1.05 + rand(-.03,.04);
+          jongCut = 1.18 + rand(-.03,.04);
+        }
+
+        gyoCut = round1(clamp(gyoCut,1.0,4.5));
+        jongCut = round1(
+          clamp(
+            Math.max(jongCut,gyoCut+.20),
+            1.0,
+            4.5
+          )
+        );
+
+        let difficulty = (baseScore-65)*.10;
+
+        if(dept === "의예과") {
+          difficulty += 7;
+        } else if(
+          dept.includes("인공지능") ||
+          dept.includes("컴퓨터") ||
+          dept.includes("소프트웨어")
+        ) {
+          difficulty += 2.5;
+        }
+
+        const commonComp = clamp(
+          5 + difficulty + rand(-.5,.9),
+          4,
+          22
+        );
+
+        const compGyo = round1(
+          Math.max(
+            3,
+            commonComp*.72 + rand(-.2,.2)
+          )
+        );
+
+        const compJong = round1(
+          Math.max(
+            compGyo+1.5,
+            commonComp*1.08+rand(.2,.8)
+          )
+        );
+
+        const compJeongsi = round1(
+          Math.max(
+            2.5,
+            commonComp*.75+rand(-.3,.6)
+          )
+        );
+
+        const feeGyo = Math.max(
+          30000,
+          money(baseFee-rand(3000,7000))
+        );
+
+        const feeJong = Math.max(
+          feeGyo+5000,
+          money(baseFee+rand(5000,14000))
+        );
+
+        const isSpecial =
+          dept.includes("인공지능") ||
+          dept.includes("컴퓨터") ||
+          dept.includes("소프트웨어");
+
+        const susiGyoName =
+          univ === "한신대"
+            ? "학생부교과 일반학생전형"
+            : "학생부교과 일반전형";
+
+        const susiJongName =
+          univ === "가천대"
+            ? "학생부종합 가천바람개비"
+            : univ === "한신대"
+              ? "학생부종합 한신인재"
+              : "학생부종합 일반전형";
+
+        const jeongsiName =
+          "수능위주 일반전형";
+
+        uniDB.push({
+          id:`${index}_${track}_${deptIndex}`,
+          univ,
+          dept,
+          track,
+
+          cCut:round1(score),
+
+          gCutGyo:gyoCut,
+          gCutJong:jongCut,
+
+          compGyo,
+          compJong,
+          compJeongsi,
+
+          feeGyo,
+          feeJong,
+
+          모집인원Gyo:randInt(10,45),
+          모집인원Jong:randInt(8,35),
+          모집인원Jeongsi:randInt(8,30),
+
+          gyoName:susiGyoName,
+          jongName:susiJongName,
+          jeongsiName,
+
+          gyoMethod:"학생부 교과 성적 중심",
+          jongMethod:"서류평가 중심",
+          jeongsiMethod:"수능 성적 중심",
+
+          gyoMinimum:
+            baseScore >= 90
+              ? "대학별 모집요강 확인 필요"
+              : "수능최저 없음(게임 데이터)",
+
+          jongMinimum:
+            baseScore >= 90
+              ? "대학별 모집요강 확인 필요"
+              : "수능최저 없음(게임 데이터)",
+
+          jeongsiGroup:
+            index%3===0 ? "가군"
+            : index%3===1 ? "나군"
+            : "다군",
+
+          detail:{
+            desc:departmentInfo[dept]?.desc || "전공 교육과정",
+            career:departmentInfo[dept]?.career || "전공 관련 진로",
+            special:isSpecial
+              ? "AI·SW 및 디지털 기술 분야와 연계성이 높은 전공"
+              : "전공 기초 및 관련 산업 분야 진출을 위한 교육"
+          }
+        });
+
+      });
+
+    });
+
+  });
+}
+
+buildUniDB();
+
+
+/* =========================================================
+   GAME STATE
+========================================================= */
+
+let gs = {
+  name:"",
+  strategy:"both",
+  dday:300,
+  track:"문과",
+
+  subs:{
+    kor:"",
+    math:"",
+    tam1:"",
+    tam2:"",
+    lang:""
+  },
+
+  stats:{
+    gpa:4.50,
+    seteuk:22,
+    kor:22,
+    math:22,
+    eng:22,
+    tam1:22,
+    tam2:22,
+    history:50,
+    lang:30,
+    hp:100,
+    stress:0
+  },
+
+  flags:{
+    mid1:false,
+    m3:false,
+    fin1:false,
+    m6:false,
+    mid2:false,
+    m9:false,
+
+    susiReg:false,
+    susiResult:false,
+    susiWait:false,
+
+    csatPrep:false,
+    csat:false,
+    csatResult:false,
+
+    jeongsiReg:false,
+    jeongsiResult:false,
+    jeongsiWait:false,
+
+    finished:false
+  },
+
+  cart:[],
+  susiCart:[],
+  jeongsiCart:[],
+
+  susiResults:[],
+  jeongsiResults:[],
+
+  susiWaitCount:0,
+  jeongsiWaitCount:0,
+
+  registeredSusi:false,
+  registeredJeongsi:false,
+
+  currentRegMode:"susi",
+  universityChoice:null,
+
+  eventBusy:false,
+
+  susiChoice:"",
+  stage:"game"
+};
+
+
+/* =========================================================
+   SCREEN
+========================================================= */
+
+function showScreen(id) {
+
+  document.querySelectorAll(".screen").forEach(el=>{
+    el.classList.remove("active");
+  });
+
+  const target = document.getElementById(id);
+
+  if(target) {
+    target.classList.add("active");
+  }
+}
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+function openModal(title,body,actions=[]) {
+
+  document.getElementById("modalTitle").innerHTML = title;
+  document.getElementById("modalBody").innerHTML = body;
+
+  document.getElementById("modalActions").innerHTML =
+    actions.map(a=>`
+      <button
+        class="${a.className || "secondary-btn"}"
+        onclick="${a.onclick}"
+      >
+        ${a.text}
+      </button>
+    `).join("");
+
+  document.getElementById("overlay").style.display="block";
+  document.getElementById("modal").style.display="flex";
+}
+
+function closeModal() {
+
+  document.getElementById("overlay").style.display="none";
+  document.getElementById("modal").style.display="none";
+
+  gs.eventBusy=false;
+}
+
+
+/* =========================================================
+   SETUP
+========================================================= */
+
+function setTrack(track) {
+
+  gs.track=track;
+
+  document.getElementById("trackMoon")
+    .classList.toggle("active",track==="문과");
+
+  document.getElementById("trackLee")
+    .classList.toggle("active",track==="이과");
+}
+
+function startGame() {
+
+  const name =
+    document.getElementById("playerName").value.trim();
+
+  if(!name) {
+
+    openModal(
+      "⚠️ 이름이 필요해요",
+      `<div class="event-small">수험생 이름을 입력해주세요.</div>`,
+      [
+        {
+          text:"확인",
+          className:"btn",
+          onclick:"closeModal()"
+        }
+      ]
+    );
+
+    return;
+  }
+
+  gs.name=name;
+
+  gs.subs.kor =
+    document.getElementById("korSub").value;
+
+  gs.subs.math =
+    document.getElementById("mathSub").value;
+
+  gs.subs.tam1 =
+    document.getElementById("tam1").value;
+
+  gs.subs.tam2 =
+    document.getElementById("tam2").value;
+
+  gs.subs.lang =
+    document.getElementById("langSub").value;
+
+  gs.strategy =
+    document.getElementById("strategy").value;
+
+  updateStrategyText();
+  refreshStudyButtons();
+  updateUI();
+
+  showScreen("gameScreen");
+
+  setTimeout(checkTimeline,300);
+}
+
+
+/* =========================================================
+   STRATEGY
+========================================================= */
+
+function updateStrategyText() {
+
+  document.getElementById("strategyText").textContent =
+    {
+      both:"수시+정시",
+      susi:"수시 집중",
+      jeongsi:"정시 집중"
+    }[gs.strategy];
+}
+
+function changeStrategy() {
+
+  const next={
+    both:"susi",
+    susi:"jeongsi",
+    jeongsi:"both"
+  };
+
+  gs.strategy=next[gs.strategy];
+
+  updateStrategyText();
+
+  openModal(
+    "🎯 입시 전략 변경",
+    `
+      <div class="event-small">
+        현재 전략: <b>${getStrategyName()}</b>
+      </div>
+    `,
+    [
+      {
+        text:"확인",
+        className:"btn",
+        onclick:"closeModal()"
+      }
+    ]
+  );
+}
+
+function getStrategyName() {
+
+  return {
+    both:"수시 + 정시 병행",
+    susi:"수시 집중",
+    jeongsi:"정시 집중"
+  }[gs.strategy];
+}
+
+function shouldSusi() {
+  return gs.strategy !== "jeongsi";
+}
+
+function shouldJeongsi() {
+  return gs.strategy !== "susi";
+}
+
+
+/* =========================================================
+   UI
+========================================================= */
+
+function updateUI() {
+
+  let ddayText;
+
+  if(gs.dday>0) {
+    ddayText=`D-${gs.dday}`;
+  } else if(gs.dday===0) {
+    ddayText="D-DAY";
+  } else {
+    ddayText=`D+${Math.abs(gs.dday)}`;
+  }
+
+  document.getElementById("dayText").textContent=ddayText;
+
+  let month;
+
+  if(gs.dday>240) month="2026년 12월";
+  else if(gs.dday>210) month="2027년 1월";
+  else if(gs.dday>180) month="2027년 2월";
+  else if(gs.dday>150) month="2027년 3월";
+  else if(gs.dday>120) month="2027년 4월";
+  else if(gs.dday>90) month="2027년 5월";
+  else if(gs.dday>60) month="2027년 6월";
+  else if(gs.dday>30) month="2027년 7월";
+  else if(gs.dday>0) month="2027년 8~10월";
+  else month="2027년 11월 이후";
+
+  document.getElementById("dateText").textContent=month;
+
+  updateStat("gpa",gs.stats.gpa,1,4.5,true);
+  updateStat("seteuk",gs.stats.seteuk,0,100);
+  updateStat("kor",gs.stats.kor,0,100);
+  updateStat("math",gs.stats.math,0,100);
+  updateStat("eng",gs.stats.eng,0,100);
+  updateStat("tam1",gs.stats.tam1,0,100);
+  updateStat("tam2",gs.stats.tam2,0,100);
+  updateStat("hp",gs.stats.hp,0,100);
+  updateStat("stress",gs.stats.stress,0,100);
+
+  document.getElementById("gpaValue").textContent =
+    gs.stats.gpa.toFixed(2);
+
+  document.getElementById("specValue").textContent =
+    Math.round(gs.stats.seteuk);
+
+  ["kor","math","eng","tam1","tam2","hp","stress"]
+    .forEach(x=>{
+      document.getElementById(x+"Value").textContent =
+        Math.round(gs.stats[x]);
+    });
+
+  document.getElementById("activityText").innerHTML =
+    `
+      📝 현재 세특 <b>${Math.round(gs.stats.seteuk)} / 100</b><br>
+      학교 활동을 꾸준히 하면 종합전형에서 유리해집니다.
+    `;
+}
+
+function updateStat(name,value,min,max,reverse=false) {
+
+  let percent;
+
+  if(reverse) {
+    percent=((max-value)/(max-min))*100;
+  } else {
+    percent=((value-min)/(max-min))*100;
+  }
+
+  const bar=document.getElementById(name+"Bar");
+
+  if(bar) {
+    bar.style.width=clamp(percent,0,100)+"%";
+  }
+}
+
+
+/* =========================================================
+   STUDY
+========================================================= */
+
+const studyTexts={
+  kor:[
+    "화작 기출 풀기",
+    "문학 작품 정리",
+    "비문학 지문 분석",
+    "국어 문법 복습",
+    "국어 모의고사"
+  ],
+  math:[
+    "수학 킬러문항 연습",
+    "기출 N제 풀이",
+    "오답노트 정리",
+    "수학 개념 인강",
+    "수학 모의고사"
+  ],
+  eng:[
+    "영단어 100개 암기",
+    "영어 듣기 훈련",
+    "구문 독해 훈련",
+    "영어 하프모의고사",
+    "빈칸 추론 연습"
+  ],
+  tam1:[
+    "탐구 기출 문제 풀이",
+    "개념 백지복습",
+    "자료 분석 연습",
+    "오답노트 정리",
+    "탐구 모의고사"
+  ],
+  tam2:[
+    "탐구 기출 문제 풀이",
+    "개념 백지복습",
+    "자료 분석 연습",
+    "오답노트 정리",
+    "탐구 모의고사"
+  ],
+  activity:[
+    "세특 탐구활동 준비",
+    "교과 연계 프로젝트",
+    "발표·토론 활동 준비",
+    "동아리 활동 정리",
+    "진로 탐구 보고서 작성",
+    "학교 활동 기록 정리"
+  ]
+};
+
+function refreshStudyButtons() {
+
+  const map={
+    kor:"korBtn",
+    math:"mathBtn",
+    eng:"engBtn",
+    tam1:"tam1Btn",
+    tam2:"tam2Btn",
+    activity:"activityBtn"
+  };
+
+  Object.keys(map).forEach(type=>{
+    const arr=studyTexts[type];
+    const text=arr[randInt(0,arr.length-1)];
+
+    const btn=document.getElementById(map[type]);
+
+    if(btn) {
+      btn.querySelector("span").textContent=text;
+    }
+  });
+}
+
+function study(type) {
+
+  if(gs.eventBusy) return;
+
+  if(gs.dday<=0) {
+    checkTimeline();
+    return;
+  }
+
+  if(gs.stats.hp<=5) {
+
+    openModal(
+      "🫠 체력이 바닥났어요",
+      `<div class="event-small">
+        지금은 휴식이 필요합니다.
+      </div>`,
+      [
+        {
+          text:"🛌 휴식하기",
+          className:"green-btn secondary-btn",
+          onclick:"closeModal();rest()"
+        }
+      ]
+    );
+
+    return;
+  }
+
+  let gain=rand(2.2,5);
+
+  if(gs.stats.stress>=70) gain*=.65;
+  if(gs.stats.stress>=90) gain*=.55;
+
+  if(type==="activity") {
+
+    gs.stats.seteuk=
+      clamp(gs.stats.seteuk+rand(4,7),0,100);
+
+    gs.stats.hp-=9;
+    gs.stats.stress+=10;
+
+  } else {
+
+    gs.stats[type]=
+      clamp(gs.stats[type]+gain,0,100);
+
+    if(gs.stats.gpa>1.2) {
+
+      let gpaGain=rand(.015,.045);
+
+      if(gs.stats.stress>70) {
+        gpaGain*=.55;
+      }
+
+      gs.stats.gpa=
+        clamp(
+          gs.stats.gpa-gpaGain,
+          1,
+          4.5
+        );
+    }
+
+    gs.stats.hp-=8;
+    gs.stats.stress+=8;
+  }
+
+  gs.stats.hp=clamp(gs.stats.hp,0,100);
+  gs.stats.stress=clamp(gs.stats.stress,0,100);
+
+  gs.dday-=4;
+
+  refreshStudyButtons();
+  updateUI();
+
+  if(Math.random()<.07) {
+    showRandomSlump();
+    return;
+  }
+
+  checkTimeline();
+}
+
+function rest() {
+
+  if(gs.eventBusy) return;
+
+  if(gs.dday<=0) {
+    checkTimeline();
+    return;
+  }
+
+  gs.stats.hp=
+    clamp(gs.stats.hp+rand(16,24),0,100);
+
+  gs.stats.stress=
+    clamp(gs.stats.stress-rand(12,20),0,100);
+
+  gs.dday-=3;
+
+  updateUI();
+  checkTimeline();
+}
+
+
+/* =========================================================
+   SLUMP
+========================================================= */
+
+function showRandomSlump() {
+
+  gs.eventBusy=true;
+
+  const events=[
+
+    {
+      title:"📉 슬럼프 발생",
+      text:"갑자기 공부가 손에 안 잡힙니다.",
+      effect(){
+
+        const subjects=[
+          "kor","math","eng","tam1","tam2"
+        ];
+
+        const target=
+          subjects[randInt(0,subjects.length-1)];
+
+        gs.stats[target]=
+          clamp(
+            gs.stats[target]-rand(3,7),
+            0,
+            100
+          );
+
+        gs.stats.stress+=15;
+        gs.stats.hp-=10;
+        gs.dday-=2;
+      }
+    },
+
+    {
+      title:"🫠 번아웃 경고",
+      text:"무리한 일정 때문에 번아웃이 찾아왔습니다.",
+      effect(){
+        gs.stats.hp-=20;
+        gs.stats.stress+=12;
+        gs.dday-=2;
+      }
+    },
+
+    {
+      title:"🤒 컨디션 난조",
+      text:"몸 상태가 좋지 않습니다.",
+      effect(){
+        gs.stats.hp-=15;
+        gs.stats.stress+=8;
+        gs.dday-=1;
+      }
+    }
+
+  ];
+
+  const event=events[randInt(0,events.length-1)];
+
+  event.effect();
+
+  gs.stats.hp=clamp(gs.stats.hp,0,100);
+  gs.stats.stress=clamp(gs.stats.stress,0,100);
+
+  updateUI();
+
+  openModal(
+    event.title,
+    `<div class="event-small">${event.text}</div>`,
+    [
+      {
+        text:"일단 버틴다 💪",
+        className:"btn",
+        onclick:"closeModal();checkTimeline()"
+      }
+    ]
+  );
+}
+
+
+/* =========================================================
+   TIMELINE
+========================================================= */
+
+function checkTimeline() {
+
+  if(gs.eventBusy || gs.flags.finished) return;
+
+  /*
+    수시 최초합 이후 선택한 경우
+  */
+
+  if(
+    gs.flags.susiResult &&
+    gs.susiChoice==="wait" &&
+    gs.susiWaitCount>0 &&
+    !gs.flags.susiWait &&
+    gs.dday<=0
+  ) {
+    openSusiWaitResult();
+    return;
+  }
+
+  /*
+    수시 원서
+  */
+
+  if(
+    shouldSusi() &&
+    !gs.flags.susiReg &&
+    gs.dday<=60
+  ) {
+    openReg("susi");
+    return;
+  }
+
+  /*
+    수시 최초합
+  */
+
+  if(
+    shouldSusi() &&
+    gs.flags.susiReg &&
+    !gs.flags.susiResult &&
+    gs.dday<=30
+  ) {
+    openSusiFirstResult();
+    return;
+  }
+
+  /*
+    모의고사
+  */
+
+  if(gs.dday<=80 && !gs.flags.m9) {
+    showMockEvent("9월 모의평가","m9");
+    return;
+  }
+
+  if(gs.dday<=100 && !gs.flags.mid2) {
+    showMockEvent("2학기 중간고사","mid2");
+    return;
+  }
+
+  if(gs.dday<=140 && !gs.flags.m6) {
+    showMockEvent("6월 모의평가","m6");
+    return;
+  }
+
+  if(gs.dday<=180 && !gs.flags.fin1) {
+    showMockEvent("1학기 기말고사","fin1");
+    return;
+  }
+
+  if(gs.dday<=210 && !gs.flags.m3) {
+    showMockEvent("3월 전국연합학력평가","m3");
+    return;
+  }
+
+  if(gs.dday<=230 && !gs.flags.mid1) {
+    showMockEvent("1학기 중간고사 준비","mid1");
+    return;
+  }
+
+  /*
+    수능 준비를 선택했다면
+    D-DAY에 수능
+  */
+
+  if(
+    gs.flags.csatPrep &&
+    !gs.flags.csat &&
+    gs.dday<=0
+  ) {
+    openCsatExam();
+    return;
+  }
+
+  /*
+    수능 응시 후 성적 발표
+  */
+
+  if(
+    gs.flags.csat &&
+    !gs.flags.csatResult
+  ) {
+    openCsatResult();
+    return;
+  }
+
+  /*
+    수능 성적 발표 이후
+    수시 추합
+  */
+
+  if(
+    gs.flags.csatResult &&
+    gs.susiWaitCount>0 &&
+    !gs.flags.susiWait &&
+    gs.susiChoice==="csat"
+  ) {
+    openSusiWaitResult();
+    return;
+  }
+
+  /*
+    정시 원서
+  */
+
+  if(
+    gs.flags.csatResult &&
+    shouldJeongsi() &&
+    !gs.flags.jeongsiReg &&
+    (
+      !shouldSusi() ||
+      gs.flags.susiWait ||
+      gs.susiWaitCount===0 ||
+      gs.susiChoice==="csat"
+    )
+  ) {
+    openReg("jeongsi");
+    return;
+  }
+
+  /*
+    정시 최초합
+  */
+
+  if(
+    gs.flags.jeongsiReg &&
+    !gs.flags.jeongsiResult &&
+    gs.dday<=-3
+  ) {
+    openJeongsiFirstResult();
+    return;
+  }
+
+  /*
+    정시 추합
+  */
+
+  if(
+    gs.flags.jeongsiResult &&
+    gs.jeongsiWaitCount>0 &&
+    !gs.flags.jeongsiWait &&
+    gs.dday<=-6
+  ) {
+    openJeongsiWaitResult();
+    return;
+  }
+
+  /*
+    정시 결과가 끝났는데
+    등록할 학교가 없다면 최종 결과
+  */
+
+  if(
+    gs.flags.jeongsiResult &&
+    gs.jeongsiWaitCount===0 &&
+    !gs.universityChoice
+  ) {
+    showFinalResults();
+  }
+}
+
+
+/* =========================================================
+   MOCK EXAM ANIMATION
+========================================================= */
+
+function showMockEvent(title,flag) {
+
+  gs.eventBusy=true;
+
+  openModal(
+    "📝 "+title,
+    `
+      <div class="exam-stage">
+
+        <div class="exam-icon">📝</div>
+
+        <div id="examPhase" class="exam-phase">
+          시험지를 준비하는 중...
+        </div>
+
+        <div class="exam-progress">
+          <div id="examProgress" class="exam-progress-fill"></div>
+        </div>
+
+        <div id="examPaper" class="exam-paper">
+          시험 준비 중...
+        </div>
+
+      </div>
+    `,
+    []
+  );
+
+  let progress=0;
+
+  const timer=setInterval(()=>{
+
+    progress+=20;
+
+    const bar=document.getElementById("examProgress");
+    const phase=document.getElementById("examPhase");
+    const paper=document.getElementById("examPaper");
+
+    if(!bar || !phase || !paper) {
+      clearInterval(timer);
+      return;
+    }
+
+    bar.style.width=progress+"%";
+
+    if(progress===20) {
+      phase.textContent="📄 시험지 배부";
+      paper.innerHTML="문제지를 받았습니다. 샤프를 잡았습니다.";
+    }
+
+    if(progress===40) {
+      phase.textContent="✏️ 문제를 푸는 중...";
+      paper.innerHTML=
+        "국어 지문 분석...<br>수학 계산...<br>영어 독해...<br>탐구 자료 분석...";
+    }
+
+    if(progress===60) {
+      phase.textContent="⏱️ 시간이 흐르고 있습니다...";
+      paper.innerHTML=
+        "남은 시간이 줄어듭니다.<br>집중력이 중요합니다.";
+    }
+
+    if(progress===80) {
+      phase.textContent="🟢 OMR 제출";
+      paper.innerHTML=`
+        답안을 작성하는 중...
+        <div class="exam-omr">
+          ${Array.from({length:20})
+            .map(()=>`<div class="omr-dot"></div>`)
+            .join("")}
+        </div>
+      `;
+    }
+
+    if(progress>=100) {
+
+      clearInterval(timer);
+
+      phase.textContent="📊 채점 중...";
+      paper.innerHTML="답안을 제출했습니다. 성적을 계산하고 있습니다...";
+
+      setTimeout(()=>{
+        finishMock(flag,title);
+      },700);
+    }
+
+  },550);
+}
+
+function finishMock(flag,title) {
+
+  gs.flags[flag]=true;
+
+  const subjects=[
+    "kor","math","eng","tam1","tam2"
+  ];
+
+  subjects.forEach(type=>{
+    gs.stats[type]=
+      clamp(
+        gs.stats[type]+rand(.5,2),
+        0,
+        100
+      );
+  });
+
+  gs.stats.stress=
+    clamp(gs.stats.stress+5,0,100);
+
+  updateUI();
+
+  const avg=getJeongsiScore();
+
+  openModal(
+    "📊 "+title+" 결과",
+    `
+      <div class="result-box result-pass">
+        평균 성적<br>
+        <b>${avg.toFixed(1)}</b>
+      </div>
+
+      <div class="event-small">
+        국어 ${gs.stats.kor.toFixed(1)}<br>
+        수학 ${gs.stats.math.toFixed(1)}<br>
+        영어 ${gs.stats.eng.toFixed(1)}<br>
+        탐구1 ${gs.stats.tam1.toFixed(1)}<br>
+        탐구2 ${gs.stats.tam2.toFixed(1)}
+      </div>
+    `,
+    [
+      {
+        text:"계속 공부하기",
+        className:"btn",
+        onclick:"closeModal();checkTimeline()"
+      }
+    ]
+  );
+}
+
+
+/* =========================================================
+   SUSI STATUS
+========================================================= */
+
+function getSusiStatus(u,type) {
+
+  const gCut =
+    type==="교과"
+      ? u.gCutGyo
+      : u.gCutJong;
+
+  /*
+    핵심:
+    내신 숫자는 낮을수록 좋다.
+
+    gap > 0:
+    대학 기준보다 내 GPA가 낮음
+    = 내가 더 좋음
+  */
+
+  const gap=gCut-gs.stats.gpa;
+
+  if(type==="교과") {
+
+    if(gap>=.45) return "안정";
+    if(gap>=0) return "적정";
+
+    return "상향";
+  }
+
+  /*
+    종합에서는 세특이 확률에는 영향을 주지만
+    GPA가 확실히 좋은데 세특이 낮다는 이유로
+    '상향'으로 뒤집지는 않는다.
+  */
+
+  if(gap>=.45) return "안정";
+
+  if(gap>=0) return "적정";
+
+  return "상향";
+}
+
+
+/* =========================================================
+   SUSI PROBABILITY
+========================================================= */
+
+function getSusiProbability(u,type) {
+
+  const isGyo=type==="교과";
+
+  const cut=
+    isGyo
+      ? u.gCutGyo
+      : u.gCutJong;
+
+  const gap=cut-gs.stats.gpa;
+
+  let gpaScore;
+
+  if(isGyo) {
+    gpaScore=
+      clamp(
+        .5+gap*.65,
+        .05,
+        .95
+      );
+  } else {
+    gpaScore=
+      clamp(
+        .5+gap*.52,
+        .05,
+        .90
+      );
+  }
+
+  let profile=gpaScore;
+
+  if(!isGyo) {
+
+    const spec=
+      clamp(
+        gs.stats.seteuk/100,
+        .05,
+        .95
+      );
+
+    profile=
+      gpaScore*.55+
+      spec*.45;
+
+    if(gs.stats.seteuk<40) {
+      profile*=.55;
+    } else if(gs.stats.seteuk<60) {
+      profile*=.78;
+    }
+  }
+
+  const comp=
+    isGyo
+      ? u.compGyo
+      : u.compJong;
+
+  let compMult=
+    1/
+    (
+      1+
+      Math.max(0,comp-5)*.055
+    );
+
+  if(comp>=18) {
+    compMult*=.82;
+  }
+
+  return clamp(
+    profile*compMult,
+    .02,
+    .92
+  );
+}
+
+
+/* =========================================================
+   RECOMMENDATION
+========================================================= */
+
+function recommendationScore(u,type) {
+
+  if(type==="교과") {
+
+    const gap=u.gCutGyo-gs.stats.gpa;
+
+    return clamp(
+      50+
+      gap*65-
+      Math.max(0,u.compGyo-10)*2,
+      0,
+      100
+    );
+  }
+
+  const gap=u.gCutJong-gs.stats.gpa;
+
+  return clamp(
+    45+
+    gap*48+
+    (gs.stats.seteuk-50)*.35-
+    Math.max(0,u.compJong-10)*1.5,
+    0,
+    100
+  );
+}
+
+function getRecommendationLabel(score) {
+
+  if(score>=70) return "추천";
+  if(score>=55) return "적정";
+  if(score>=40) return "소신";
+  return "상향";
+}
+
+function getRecommendationClass(label) {
+
+  if(label==="추천") return "b-safe";
+  if(label==="적정") return "b-mid";
+  return "b-hard";
+}
+
+function getRecommendationReason(u,type) {
+
+  const status=getSusiStatus(u,type);
+
+  if(type==="교과") {
+
+    if(status==="안정") {
+      return `내신 ${gs.stats.gpa.toFixed(2)}가 교과 기준 ${u.gCutGyo.toFixed(2)}보다 좋습니다.`;
+    }
+
+    if(status==="적정") {
+      return `내신 ${gs.stats.gpa.toFixed(2)}와 교과 기준 ${u.gCutGyo.toFixed(2)}가 가까운 편입니다.`;
+    }
+
+    return `현재 내신 ${gs.stats.gpa.toFixed(2)}보다 낮은 내신 기준이 필요합니다.`;
+  }
+
+  if(status==="안정") {
+    return `내신은 안정 구간이며 세특 ${Math.round(gs.stats.seteuk)}도 함께 반영됩니다.`;
+  }
+
+  if(status==="적정") {
+    return `내신 ${gs.stats.gpa.toFixed(2)}와 세특 ${Math.round(gs.stats.seteuk)}를 종합한 적정 구간입니다.`;
+  }
+
+  return `현재 내신과 종합전형 기준의 차이를 고려한 상향 지원입니다.`;
+}
+
+
+/* =========================================================
+   JEONGSI
+========================================================= */
+
+function getJeongsiScore() {
+
+  return (
+    gs.stats.kor+
+    gs.stats.math+
+    gs.stats.eng+
+    gs.stats.tam1+
+    gs.stats.tam2
+  )/5;
+}
+
+function getJeongsiStatus(u) {
+
+  const avg=getJeongsiScore();
+  const gap=avg-u.cCut;
+
+  if(gap>=4) return "안정";
+  if(gap>=-1) return "적정";
+
+  return "상향";
+}
+
+
+/* =========================================================
+   SCHOOL DETAIL
+========================================================= */
+
+function openUniversityDetail(id) {
+
+  const u=uniDB.find(x=>x.id===id);
+
+  if(!u) return;
+
+  const gyoStatus=getSusiStatus(u,"교과");
+  const jongStatus=getSusiStatus(u,"종합");
+  const jeongStatus=getJeongsiStatus(u);
+
+  openModal(
+    `🏫 ${u.univ}`,
+    `
+      <div class="event-small">
+        <b>${u.dept}</b><br>
+        ${u.track} 계열 · 2027학년도 게임용 입시 정보
+      </div>
+
+      <div class="detail-section">
+        <div class="detail-section-title">📚 학과 정보</div>
+
+        <div class="detail-list">
+          ${u.detail.desc}<br><br>
+          <b>주요 진로</b><br>
+          ${u.detail.career}<br><br>
+          ${u.detail.special}
+        </div>
+      </div>
+
+      <div class="detail-section">
+        <div class="detail-section-title">📝 학생부교과</div>
+
+        <div class="detail-grid">
+
+          <div class="detail-card">
+            <strong>전형명</strong>
+            ${u.gyoName}
+          </div>
+
+          <div class="detail-card">
+            <strong>모집인원</strong>
+            ${u.모집인원Gyo}명
+          </div>
+
+          <div class="detail-card">
+            <strong>전형방법</strong>
+            ${u.gyoMethod}
+          </div>
+
+          <div class="detail-card">
+            <strong>경쟁률</strong>
+            ${u.compGyo}:1
+          </div>
+
+          <div class="detail-card">
+            <strong>내신 기준</strong>
+            ${u.gCutGyo.toFixed(2)}
+          </div>
+
+          <div class="detail-card">
+            <strong>내 상태</strong>
+            <span class="badge ${getRecommendationClass(gyoStatus==="안정"?"추천":gyoStatus)}">
+              ${gyoStatus}
+            </span>
+          </div>
+        </div>
+
+        <div class="detail-list" style="margin-top:7px;">
+          수능최저: ${u.gyoMinimum}<br>
+          예상 접수비: ${u.feeGyo.toLocaleString()}원
+        </div>
+      </div>
+
+      <div class="detail-section">
+        <div class="detail-section-title">📖 학생부종합</div>
+
+        <div class="detail-grid">
+
+          <div class="detail-card">
+            <strong>전형명</strong>
+            ${u.jongName}
+          </div>
+
+          <div class="detail-card">
+            <strong>모집인원</strong>
+            ${u.모집인원Jong}명
+          </div>
+
+          <div class="detail-card">
+            <strong>전형방법</strong>
+            ${u.jongMethod}
+          </div>
+
+          <div class="detail-card">
+            <strong>경쟁률</strong>
+            ${u.compJong}:1
+          </div>
+
+          <div class="detail-card">
+            <strong>내신 참고 기준</strong>
+            ${u.gCutJong.toFixed(2)}
+          </div>
+
+          <div class="detail-card">
+            <strong>세특</strong>
+            ${Math.round(gs.stats.seteuk)} / 100
+          </div>
+        </div>
+
+        <div class="detail-list" style="margin-top:7px;">
+          수능최저: ${u.jongMinimum}<br>
+          예상 접수비: ${u.feeJong.toLocaleString()}원
+        </div>
+      </div>
+
+      <div class="detail-section">
+        <div class="detail-section-title">📊 정시</div>
+
+        <div class="detail-grid">
+
+          <div class="detail-card">
+            <strong>전형명</strong>
+            ${u.jeongsiName}
+          </div>
+
+          <div class="detail-card">
+            <strong>모집군</strong>
+            ${u.jeongsiGroup}
+          </div>
+
+          <div class="detail-card">
+            <strong>모집인원</strong>
+            ${u.모집인원Jeongsi}명
+          </div>
+
+          <div class="detail-card">
+            <strong>전형방법</strong>
+            ${u.jeongsiMethod}
+          </div>
+
+          <div class="detail-card">
+            <strong>예상 수능 기준</strong>
+            ${u.cCut.toFixed(1)}
+          </div>
+
+          <div class="detail-card">
+            <strong>현재 평균</strong>
+            ${getJeongsiScore().toFixed(1)}
+          </div>
+        </div>
+
+        <div class="detail-list" style="margin-top:7px;">
+          경쟁률: ${u.compJeongsi}:1<br>
+          현재 정시 판단: ${jeongStatus}
+        </div>
+      </div>
+
+      <div class="info-line">
+        ※ 위 수치는 실제 모집요강을 그대로 복제한 것이 아닌 게임용 시뮬레이션 데이터입니다.
+      </div>
+    `,
+    [
+      {
+        text:"닫기",
+        className:"btn",
+        onclick:"closeModal()"
+      }
+    ]
+  );
+}
+
+
+/* =========================================================
+   RECOMMEND PANEL
+========================================================= */
+
+function renderRecommendationPanel(mode) {
+
+  const filtered=uniDB.filter(u=>u.track===gs.track);
+
+  let candidates=[];
+
+  if(mode==="susi") {
+
+    filtered.forEach(u=>{
+
+      ["교과","종합"].forEach(type=>{
+
+        const score=recommendationScore(u,type);
+
+        candidates.push({
+          u,
+          type,
+          score,
+          label:getRecommendationLabel(score)
+        });
+
+      });
+
+    });
+
+  } else {
+
+    filtered.forEach(u=>{
+
+      const avg=getJeongsiScore();
+
+      const score=clamp(
+        50+
+        (avg-u.cCut)*8-
+        Math.max(0,u.compJeongsi-10)*2,
+        0,
+        100
+      );
+
+      candidates.push({
+        u,
+        type:"정시",
+        score,
+        label:
+          score>=70
+            ? "추천"
+            : score>=55
+              ? "적정"
+              : score>=40
+                ? "소신"
+                : "상향"
+      });
+
+    });
+
+  }
+
+  candidates.sort((a,b)=>b.score-a.score);
+
+  const top=candidates.slice(0,5);
+
+  return `
+    <div class="recommend-panel">
+
+      <div class="recommend-title">
+        ✨ 내 성적으로 추천
+      </div>
+
+      <div class="info-line">
+        내신 <b>${gs.stats.gpa.toFixed(2)}</b>
+        · 세특 <b>${Math.round(gs.stats.seteuk)}</b>
+        · 수능 평균 <b>${getJeongsiScore().toFixed(1)}</b>
+      </div>
+
+      ${top.map(x=>`
+        <div
+          class="recommend-item"
+          onclick="openUniversityDetail('${x.u.id}')"
+        >
+          <div class="recommend-head">
+
+            <div>
+              <div class="recommend-name">
+                ${x.u.univ} · ${x.u.dept}
+              </div>
+
+              <div class="dept-name">
+                ${x.type==="정시" ? "정시" : "학생부"+x.type}
+              </div>
+            </div>
+
+            <span class="badge ${getRecommendationClass(x.label)}">
+              ${x.label}
+            </span>
+
+          </div>
+
+          <div class="recommend-reason">
+            ${
+              x.type==="정시"
+                ? `수능 기준 ${x.u.cCut.toFixed(1)} · 현재 ${getJeongsiScore().toFixed(1)}`
+                : getRecommendationReason(x.u,x.type)
+            }
+          </div>
+        </div>
+      `).join("")}
+
+    </div>
+  `;
+}
+
+
+/* =========================================================
+   REGISTRATION
+========================================================= */
+
+function openReg(mode) {
+
+  if(gs.eventBusy) return;
+
+  if(mode==="jeongsi" && !gs.flags.csatResult) {
+    return;
+  }
+
+  gs.eventBusy=true;
+  gs.currentRegMode=mode;
+
+  /*
+    각 접수창에서 이전 카트 복원
+  */
+
+  if(mode==="susi") {
+    gs.cart=gs.susiCart;
+  } else {
+    gs.cart=gs.jeongsiCart;
+  }
+
+  openModal(
+    mode==="susi"
+      ? "📝 수시 원서 접수"
+      : "📊 정시 원서 접수",
+
+    `
+      ${renderRecommendationPanel(mode)}
+
+      <div class="event-small">
+        ${
+          mode==="susi"
+            ? "수시 원서는 최대 6장입니다. 교과 또는 종합 전형을 선택하세요."
+            : "정시 원서는 최대 3장입니다. 수능 성적을 기준으로 지원하세요."
+        }
+      </div>
+
+      <div class="info-line">
+        현재 내신 <b>${gs.stats.gpa.toFixed(2)}</b>
+        · 세특 <b>${Math.round(gs.stats.seteuk)}</b>
+        · 수능 평균 <b>${getJeongsiScore().toFixed(1)}</b>
+      </div>
+
+      <div class="search-box">
+
+        <input
+          id="uniSearch"
+          class="search-input"
+          type="text"
+          placeholder="🔎 대학명 또는 학과 검색"
+          oninput="renderRegList()"
+        >
+
+        <div class="filter-row">
+          <button
+            id="filterAll"
+            class="filter-btn active"
+            onclick="setRegFilter('all')"
+          >
+            전체
+          </button>
+
+          <button
+            id="filterSafe"
+            class="filter-btn"
+            onclick="setRegFilter('safe')"
+          >
+            안정
+          </button>
+
+          <button
+            id="filterMid"
+            class="filter-btn"
+            onclick="setRegFilter('mid')"
+          >
+            적정
+          </button>
+
+          <button
+            id="filterHard"
+            class="filter-btn"
+            onclick="setRegFilter('hard')"
+          >
+            상향
+          </button>
+        </div>
+
+      </div>
+
+      <div id="regList" class="list-container"></div>
+
+      <div class="reg-footer">
+        <div id="regTotal" class="event-small"></div>
+
+        <button
+          class="btn"
+          onclick="submitReg()"
+        >
+          📮 원서 접수 완료
+        </button>
+      </div>
+    `,
+    []
+  );
+
+  gs.regFilter="all";
+
+  renderRegList();
+}
+
+function setRegFilter(filter) {
+
+  gs.regFilter=filter;
+
+  document.querySelectorAll(".filter-btn")
+    .forEach(btn=>btn.classList.remove("active"));
+
+  const map={
+    all:"filterAll",
+    safe:"filterSafe",
+    mid:"filterMid",
+    hard:"filterHard"
+  };
+
+  const el=document.getElementById(map[filter]);
+
+  if(el) el.classList.add("active");
+
+  renderRegList();
+}
+
+
+/* =========================================================
+   REG LIST
+========================================================= */
+
+function renderRegList() {
+
+  const list=document.getElementById("regList");
+
+  if(!list) return;
+
+  const mode=gs.currentRegMode;
+
+  const searchEl=document.getElementById("uniSearch");
+
+  const search=
+    searchEl
+      ? searchEl.value.trim().toLowerCase()
+      : "";
+
+  const max=mode==="susi" ? 6 : 3;
+
+  let filtered=uniDB.filter(
+    u=>u.track===gs.track
+  );
+
+  if(search) {
+
+    filtered=filtered.filter(u=>
+      u.univ.toLowerCase().includes(search) ||
+      u.dept.toLowerCase().includes(search)
+    );
+
+  }
+
+  filtered=filtered.filter(u=>{
+
+    if(gs.regFilter==="all") return true;
+
+    const status=
+      mode==="susi"
+        ? getSusiStatus(u,"교과")
+        : getJeongsiStatus(u);
+
+    if(gs.regFilter==="safe") {
+      return status==="안정";
+    }
+
+    if(gs.regFilter==="mid") {
+      return status==="적정";
+    }
+
+    if(gs.regFilter==="hard") {
+      return status==="상향";
+    }
+
+    return true;
+  });
+
+  if(filtered.length===0) {
+
+    list.innerHTML=`
+      <div class="event-small">
+        검색 조건에 맞는 대학이 없습니다.
+      </div>
+    `;
+
+    updateRegTotal();
+    return;
+  }
+
+  list.innerHTML=
+    filtered.map(u=>{
+
+      const selected=
+        gs.cart.find(x=>x.id===u.id);
+
+      if(mode==="susi") {
+
+        const gyoStatus=getSusiStatus(u,"교과");
+        const jongStatus=getSusiStatus(u,"종합");
+
+        const gyoClass=
+          gyoStatus==="안정"
+            ? "b-safe"
+            : gyoStatus==="적정"
+              ? "b-mid"
+              : "b-hard";
+
+        const jongClass=
+          jongStatus==="안정"
+            ? "b-safe"
+            : jongStatus==="적정"
+              ? "b-mid"
+              : "b-hard";
+
+        return `
+          <div class="list-item ${selected?"selected":""}">
+
+            <div class="uni-head">
+
+              <div>
+                <div class="uni-name">
+                  ${u.univ}
+                </div>
+
+                <div class="dept-name">
+                  ${u.dept}
+                </div>
+              </div>
+
+            </div>
+
+            <div class="cut-info">
+
+              <div class="cut-box">
+                교과 내신 기준
+                <strong>${u.gCutGyo.toFixed(2)}</strong>
+              </div>
+
+              <div class="cut-box">
+                종합 내신 기준
+                <strong>${u.gCutJong.toFixed(2)}</strong>
+              </div>
+
+              <div class="cut-box">
+                교과 경쟁률
+                <strong>${u.compGyo}:1</strong>
+              </div>
+
+              <div class="cut-box">
+                종합 경쟁률
+                <strong>${u.compJong}:1</strong>
+              </div>
+
+            </div>
+
+            <div class="admission-type">
+
+              <button
+                class="${selected?.applyType==="교과"?"active":""}"
+                onclick="toggleReg('${u.id}','교과')"
+              >
+                교과
+                <span class="badge ${gyoClass}">
+                  ${gyoStatus}
+                </span>
+                <small>
+                  ${u.gyoName}<br>
+                  ${u.feeGyo.toLocaleString()}원
+                </small>
+              </button>
+
+              <button
+                class="${selected?.applyType==="종합"?"active jong":""}"
+                onclick="toggleReg('${u.id}','종합')"
+              >
+                종합
+                <span class="badge ${jongClass}">
+                  ${jongStatus}
+                </span>
+                <small>
+                  ${u.jongName}<br>
+                  ${u.feeJong.toLocaleString()}원
+                </small>
+              </button>
+
+            </div>
+
+            <div class="recommend-box">
+              <b>
+                ${
+                  selected
+                    ? "✓ "+selected.applyType+" 선택"
+                    : "전형을 선택하세요"
+                }
+              </b><br>
+
+              ${
+                selected
+                  ? getRecommendationReason(
+                      u,
+                      selected.applyType
+                    )
+                  : `내신 ${gs.stats.gpa.toFixed(2)} · 세특 ${Math.round(gs.stats.seteuk)}`
+              }
+            </div>
+
+            <button
+              class="detail-btn"
+              onclick="openUniversityDetail('${u.id}')"
+            >
+              🏫 학교·학과·전형 상세정보 보기
+            </button>
+
+          </div>
+        `;
+
+      }
+
+      const status=getJeongsiStatus(u);
+
+      const cls=
+        status==="안정"
+          ? "b-safe"
+          : status==="적정"
+            ? "b-mid"
+            : "b-hard";
+
+      return `
+        <div class="list-item ${selected?"selected":""}">
+
+          <div class="uni-head">
+
+            <div>
+              <div class="uni-name">
+                ${u.univ}
+              </div>
+
+              <div class="dept-name">
+                ${u.dept}
+              </div>
+            </div>
+
+            <span class="badge ${cls}">
+              ${status}
+            </span>
+
+          </div>
+
+          <div class="cut-info">
+
+            <div class="cut-box">
+              예상 수능 기준
+              <strong>${u.cCut.toFixed(1)}</strong>
+            </div>
+
+            <div class="cut-box">
+              내 수능 평균
+              <strong>${getJeongsiScore().toFixed(1)}</strong>
+            </div>
+
+            <div class="cut-box">
+              모집군
+              <strong>${u.jeongsiGroup}</strong>
+            </div>
+
+            <div class="cut-box">
+              경쟁률
+              <strong>${u.compJeongsi}:1</strong>
+            </div>
+
+          </div>
+
+          <div class="recommend-box">
+            <b>${u.jeongsiName}</b><br>
+            모집인원 ${u.모집인원Jeongsi}명 ·
+            ${u.jeongsiMethod}
+          </div>
+
+          <button
+            class="detail-btn"
+            onclick="openUniversityDetail('${u.id}')"
+          >
+            🏫 학교·학과·정시 상세정보
+          </button>
+
+          <button
+            class="${selected?"check-result-btn":"secondary-btn"}"
+            style="
+              width:100%;
+              margin-top:7px;
+              padding:10px;
+              border:2px solid var(--border);
+              border-radius:10px;
+              font-weight:900;
+              cursor:pointer;
+            "
+            onclick="toggleReg('${u.id}','정시')"
+          >
+            ${
+              selected
+                ? "✓ 정시 지원 취소"
+                : "📮 이 대학 정시 지원"
+            }
+          </button>
+
+        </div>
+      `;
+
+    }).join("");
+
+  updateRegTotal();
+}
+
+
+/* =========================================================
+   TOGGLE APPLICATION
+========================================================= */
+
+function toggleReg(id,type) {
+
+  const u=uniDB.find(x=>x.id===id);
+
+  if(!u) return;
+
+  const max=
+    gs.currentRegMode==="susi"
+      ? 6
+      : 3;
+
+  const index=
+    gs.cart.findIndex(x=>x.id===id);
+
+  if(index>=0) {
+
+    if(gs.cart[index].applyType===type) {
+
+      gs.cart.splice(index,1);
+
+    } else {
+
+      gs.cart[index].applyType=type;
+
+    }
+
+  } else {
+
+    if(gs.cart.length>=max) {
+
+      openModal(
+        "📮 원서가 꽉 찼어요",
+        `
+          <div class="event-small">
+            ${
+              gs.currentRegMode==="susi"
+                ? "수시는 최대 6장"
+                : "정시는 최대 3장"
+            }까지 지원할 수 있습니다.
+          </div>
+        `,
+        [
+          {
+            text:"확인",
+            className:"btn",
+            onclick:"closeModal()"
+          }
+        ]
+      );
+
+      return;
+    }
+
+    gs.cart.push({
+      ...u,
+      applyType:type
+    });
+  }
+
+  renderRegList();
+}
+
+
+/* =========================================================
+   FEE
+========================================================= */
+
+function getApplicationFee(item) {
+
+  if(item.applyType==="교과") {
+    return item.feeGyo;
+  }
+
+  if(item.applyType==="종합") {
+    return item.feeJong;
+  }
+
+  return 0;
+}
+
+function updateRegTotal() {
+
+  const el=document.getElementById("regTotal");
+
+  if(!el) return;
+
+  const max=
+    gs.currentRegMode==="susi"
+      ? 6
+      : 3;
+
+  const total=
+    gs.cart.reduce(
+      (sum,item)=>
+        sum+getApplicationFee(item),
+      0
+    );
+
+  el.innerHTML=`
+    현재 <b>${gs.cart.length}/${max}장</b>
+    · 예상 접수비 <b>${total.toLocaleString()}원</b>
+  `;
+}
+
+
+/* =========================================================
+   SUBMIT
+========================================================= */
+
+function submitReg() {
+
+  if(gs.cart.length===0) {
+
+    openModal(
+      "📮 원서를 선택해주세요",
+      `<div class="event-small">
+        최소 1장의 원서를 선택해야 합니다.
+      </div>`,
+      [
+        {
+          text:"확인",
+          className:"btn",
+          onclick:"closeModal()"
+        }
+      ]
+    );
+
+    return;
+  }
+
+  if(gs.currentRegMode==="susi") {
+
+    gs.susiCart=
+      JSON.parse(JSON.stringify(gs.cart));
+
+    gs.flags.susiReg=true;
+
+    gs.cart=[];
+
+  } else {
+
+    gs.jeongsiCart=
+      JSON.parse(JSON.stringify(gs.cart));
+
+    gs.flags.jeongsiReg=true;
+
+    gs.cart=[];
+
+  }
+
+  const mode=gs.currentRegMode;
+  const count=
+    mode==="susi"
+      ? gs.susiCart.length
+      : gs.jeongsiCart.length;
+
+  closeModal();
+
+  openModal(
+    "📮 원서 접수 완료",
+    `
+      <div class="result-box result-pass">
+        ${mode==="susi"?"수시":"정시"} 원서<br>
+        <b>${count}장 접수 완료</b>
+      </div>
+
+      <div class="event-small">
+        ${
+          mode==="susi"
+            ? "수시 최초합격자 발표일까지 게임을 계속 진행합니다."
+            : "이제 정시 최초합격자 발표를 기다립니다."
+        }
+      </div>
+    `,
+    [
+      {
+        text:"🎮 게임 계속하기",
+        className:"btn",
+        onclick:"closeModal();advanceAfterReg()"
+      }
+    ]
+  );
+}
+
+function advanceAfterReg() {
+
+  /*
+    정시 원서접수 직후에는 바로 결과를 내지 않는다.
+    D+3 정도 지나면 최초합이 뜬다.
+  */
+
+  if(gs.currentRegMode==="jeongsi") {
+
+    if(gs.dday>-3) {
+      gs.dday=-3;
+    }
+
+  }
+
+  updateUI();
+
+  setTimeout(checkTimeline,100);
+}
+
+
+/* =========================================================
+   SUSI RESULT
+========================================================= */
+
+function calculateSusiOutcome(u,type) {
+
+  const probability=
+    getSusiProbability(u,type);
+
+  const finalProbability=
+    clamp(
+      probability+rand(-.06,.06),
+      .01,
+      .97
+    );
+
+  const pass=
+    Math.random()<finalProbability;
+
+  let wait=false;
+
+  if(!pass) {
+
+    const waitChance=
+      clamp(
+        probability*.48,
+        .05,
+        .42
+      );
+
+    wait=
+      Math.random()<waitChance;
+  }
+
+  return {
+    ...u,
+    type,
+    probability:finalProbability,
+    pass,
+    wait,
+    reason:getOutcomeReason(
+      u,
+      type,
+      finalProbability,
+      pass,
+      wait
+    )
+  };
+}
+
+function getOutcomeReason(u,type,p,pass,wait) {
+
+  if(pass) {
+
+    if(type==="종합") {
+
+      return `
+        내신 ${gs.stats.gpa.toFixed(2)}와
+        세특 ${Math.round(gs.stats.seteuk)}가
+        함께 반영되었습니다.
+      `;
+    }
+
+    return `
+      내신 ${gs.stats.gpa.toFixed(2)}가
+      교과 기준 ${u.gCutGyo.toFixed(2)}보다
+      ${u.gCutGyo-gs.stats.gpa>=0?"좋은":"낮은"} 수준입니다.
+    `;
+  }
+
+  if(wait) {
+    return "최초합은 아니지만 추가합격 대기 명단에 올랐습니다.";
+  }
+
+  if(type==="종합" && gs.stats.seteuk<40) {
+    return "내신 외에 세특 경쟁력이 낮아 종합전형에서 불리했습니다.";
+  }
+
+  return "경쟁률과 지원자 경쟁에서 최초합 기준을 넘지 못했습니다.";
+}
+
+function openSusiFirstResult() {
+
+  if(gs.flags.susiResult) return;
+
+  if(!gs.flags.susiReg) return;
+
+  gs.eventBusy=true;
+
+  gs.susiResults=
+    gs.susiCart.map(item=>
+      calculateSusiOutcome(
+        item,
+        item.applyType
+      )
+    );
+
+  gs.flags.susiResult=true;
+
+  gs.susiWaitCount=
+    gs.susiResults.filter(x=>x.wait).length;
+
+  const passed=
+    gs.susiResults.filter(x=>x.pass);
+
+  let html=`
+    <div class="event-small">
+      📢 <b>수시 최초합격자 발표</b><br>
+      지금은 최초합 결과만 발표됩니다.
+    </div>
+  `;
+
+  gs.susiResults.forEach(r=>{
+
+    const status=
+      r.pass
+        ? "최초합격"
+        : r.wait
+          ? "추가합격 대기"
+          : "불합격";
+
+    const cls=
+      r.pass
+        ? "result-pass"
+        : r.wait
+          ? "result-wait"
+          : "result-fail";
+
+    html+=`
+      <div class="result-box ${cls}">
+
+        ${r.univ} · ${r.dept}<br>
+
+        <span class="badge">
+          ${r.type}
+        </span>
+
+        <br>
+
+        <b>${status}</b>
+
+        <div class="result-meta">
+          ${r.reason}
+        </div>
+
+      </div>
+    `;
+  });
+
+  if(passed.length>0) {
+
+    openModal(
+      "🎉 수시 최초합격자 발표",
+      html+
+      `
+        <div class="event-small">
+          최초합격 대학이 있습니다.<br>
+          이제 본인의 선택을 결정하세요.
+        </div>
+      `,
+      [
+        {
+          text:"📚 수능을 준비하겠습니다",
+          className:"blue-btn secondary-btn",
+          onclick:"chooseAfterSusi('csat')"
+        },
+        {
+          text:"⏳ 추합을 기다리겠습니다",
+          className:"orange-btn secondary-btn",
+          onclick:"chooseAfterSusi('wait')"
+        },
+        {
+          text:"🏫 학교에 등록하겠습니다",
+          className:"green-btn secondary-btn",
+          onclick:"chooseAfterSusi('register')"
+        }
+      ]
+    );
+
+  } else if(gs.susiWaitCount>0) {
+
+    openModal(
+      "📨 수시 최초합격자 발표",
+      html+
+      `
+        <div class="event-small">
+          최초합은 없지만 추가합격 대기 대학이 있습니다.
+        </div>
+      `,
+      [
+        {
+          text:"📚 수능 준비하기",
+          className:"blue-btn secondary-btn",
+          onclick:"chooseAfterSusi('csat')"
+        },
+        {
+          text:"⏳ 추합 기다리기",
+          className:"orange-btn secondary-btn",
+          onclick:"chooseAfterSusi('wait')"
+        }
+      ]
+    );
+
+  } else {
+
+    openModal(
+      "📨 수시 최초합격자 발표",
+      html+
+      `
+        <div class="event-small">
+          수시 최초합 및 추합 대기 대학이 없습니다.
+          정시 준비를 진행합니다.
+        </div>
+      `,
+      [
+        {
+          text:"📚 수능 준비하기",
+          className:"blue-btn secondary-btn",
+          onclick:"chooseAfterSusi('csat')"
+        }
+      ]
+    );
+  }
+}
+
+
+/* =========================================================
+   AFTER SUSI
+========================================================= */
+
+function chooseAfterSusi(choice) {
+
+  closeModal();
+
+  gs.susiChoice=choice;
+
+  if(choice==="register") {
+
+    const passed=
+      gs.susiResults.filter(x=>x.pass);
+
+    if(passed.length) {
+
+      gs.universityChoice=passed[0];
+      gs.registeredSusi=true;
+
+      showRegisteredUniversity(
+        passed[0]
+      );
+
+      return;
+    }
+  }
+
+  if(choice==="csat") {
+
+    gs.flags.csatPrep=true;
+    gs.stage="csatPrep";
+
+    openModal(
+      "📚 수능 준비 시작",
+      `
+        <div class="result-box result-pass">
+          🎯 수능 루트 진입
+        </div>
+
+        <div class="event-small">
+          이제 수능을 준비합니다.<br>
+          공부 버튼을 사용해서 수능 성적을 최대한 끌어올리세요.
+        </div>
+      `,
+      [
+        {
+          text:"📚 공부 계속하기",
+          className:"btn",
+          onclick:"closeModal()"
+        }
+      ]
+    );
+
+    return;
+  }
+
+  if(choice==="wait") {
+
+    gs.stage="susiWait";
+
+    openModal(
+      "⏳ 수시 추합 대기",
+      `
+        <div class="result-box result-wait">
+          수시 추가합격 발표 대기
+        </div>
+
+        <div class="event-small">
+          추가합격 발표까지 기다립니다.<br>
+          수능을 준비하고 싶다면 아래 버튼을 눌러도 됩니다.
+        </div>
+      `,
+      [
+        {
+          text:"📚 수능 준비하기",
+          className:"blue-btn secondary-btn",
+          onclick:"startCsatPreparation()"
+        },
+        {
+          text:"⏳ 계속 기다리기",
+          className:"orange-btn secondary-btn",
+          onclick:"closeModal();checkTimeline()"
+        }
+      ]
+    );
+  }
+}
+
+function startCsatPreparation() {
+
+  closeModal();
+
+  gs.susiChoice="csat";
+  gs.flags.csatPrep=true;
+  gs.stage="csatPrep";
+
+  openModal(
+    "📚 수능 준비하기",
+    `
+      <div class="event-small">
+        수능 준비 단계에 들어왔습니다.
+      </div>
+
+      <div class="info-line">
+        D-DAY까지 공부하면 수능 점수가 계속 변합니다.
+      </div>
+    `,
+    [
+      {
+        text:"공부 시작",
+        className:"btn",
+        onclick:"closeModal();updateUI()"
+      }
+    ]
+  );
+}
+
+
+/* =========================================================
+   SUSI WAIT
+========================================================= */
+
+function openSusiWaitResult() {
+
+  if(
+    !gs.flags.susiResult ||
+    gs.susiWaitCount<=0 ||
+    gs.flags.susiWait
+  ) {
+    return;
+  }
+
+  gs.eventBusy=true;
+
+  const waits=
+    gs.susiResults.filter(
+      x=>x.wait&&!x.pass
+    );
+
+  waits.forEach(r=>{
+
+    r.extraPass=
+      Math.random()<
+      clamp(
+        r.probability*.65+.12,
+        .10,
+        .55
+      );
+  });
+
+  gs.flags.susiWait=true;
+
+  const extra=
+    waits.filter(x=>x.extraPass);
+
+  let html=`
+    <div class="event-small">
+      📢 기다리던 <b>수시 추가합격 발표</b>입니다.
+    </div>
+  `;
+
+  waits.forEach(r=>{
+
+    html+=`
+      <div class="result-box ${
+        r.extraPass
+          ? "result-pass"
+          : "result-fail"
+      }">
+
+        ${r.univ} · ${r.dept}<br>
+
+        <b>
+          ${
+            r.extraPass
+              ? "🎉 추가합격"
+              : "추가합격 불발"
+          }
+        </b>
+
+      </div>
+    `;
+  });
+
+  if(extra.length>0) {
+
+    openModal(
+      "🎉 수시 추가합격 발표",
+      html,
+      [
+        {
+          text:"🏫 추가합격 대학 등록",
+          className:"green-btn secondary-btn",
+          onclick:"registerExtraSusi()"
+        },
+        {
+          text:"📊 수능 성적으로 정시 진행",
+          className:"blue-btn secondary-btn",
+          onclick:"continueAfterSusiWait()"
+        }
+      ]
+    );
+
+  } else {
+
+    openModal(
+      "📨 수시 추가합격 발표",
+      html+
+      `
+        <div class="event-small">
+          추가합격 대학이 없습니다.<br>
+          정시 원서접수로 진행합니다.
+        </div>
+      `,
+      [
+        {
+          text:"📮 정시 원서접수",
+          className:"btn",
+          onclick:"continueAfterSusiWait()"
+        }
+      ]
+    );
+  }
+}
+
+function continueAfterSusiWait() {
+
+  closeModal();
+
+  gs.susiChoice="csat";
+
+  if(
+    shouldJeongsi() &&
+    gs.flags.csatResult
+  ) {
+    setTimeout(()=>{
+      openReg("jeongsi");
+    },100);
+  }
+}
+
+function registerExtraSusi() {
+
+  const extra=
+    gs.susiResults.find(x=>x.extraPass);
+
+  if(!extra) return;
+
+  gs.universityChoice=extra;
+  gs.registeredSusi=true;
+
+  showRegisteredUniversity(extra);
+}
+
+
+/* =========================================================
+   CSAT
+========================================================= */
+
+function openCsatExam() {
+
+  if(gs.flags.csat) return;
+
+  gs.eventBusy=true;
+
+  openModal(
+    "📝 2027학년도 대학수학능력시험",
+    `
+      <div class="exam-stage">
+
+        <div class="exam-icon">🏫</div>
+
+        <div id="examPhase" class="exam-phase">
+          시험장 입실 중...
+        </div>
+
+        <div class="exam-progress">
+          <div id="examProgress" class="exam-progress-fill"></div>
+        </div>
+
+        <div id="examPaper" class="exam-paper">
+          수험표를 확인하고 시험장으로 들어갑니다.
+        </div>
+
+      </div>
+    `,
+    []
+  );
+
+  let progress=0;
+
+  const timer=setInterval(()=>{
+
+    progress+=12.5;
+
+    const bar=document.getElementById("examProgress");
+    const phase=document.getElementById("examPhase");
+    const paper=document.getElementById("examPaper");
+
+    if(!bar||!phase||!paper) {
+      clearInterval(timer);
+      return;
+    }
+
+    bar.style.width=progress+"%";
+
+    if(progress<25) {
+      phase.textContent="🏫 시험장 입실";
+      paper.innerHTML="수험표를 확인하고 자리에 앉았습니다.";
+    } else if(progress<40) {
+      phase.textContent="📖 국어 영역";
+      paper.innerHTML="국어 시험 시작. 지문을 읽기 시작합니다.";
+    } else if(progress<55) {
+      phase.textContent="📐 수학 영역";
+      paper.innerHTML="수학 시험. 시간이 빠르게 흘러갑니다.";
+    } else if(progress<70) {
+      phase.textContent="🎧 영어 영역";
+      paper.innerHTML="영어 듣기 평가가 시작됩니다.";
+    } else if(progress<85) {
+      phase.textContent="📚 탐구 영역";
+      paper.innerHTML="탐구 1교시와 2교시를 치르는 중입니다.";
+    } else if(progress<100) {
+      phase.textContent="⏱️ 마지막 문제";
+      paper.innerHTML="마지막 답안을 확인합니다.";
+    } else {
+
+      clearInterval(timer);
+
+      phase.textContent="🔔 시험 종료";
+      paper.innerHTML="시험이 끝났습니다. 수험표를 챙겨 시험장을 나옵니다.";
+
+      setTimeout(finishCsat,900);
+    }
+
+  },450);
+}
+
+function finishCsat() {
+
+  gs.flags.csat=true;
+
+  const condition=
+    (gs.stats.hp-gs.stats.stress)/100;
+
+  const bonus=
+    clamp(
+      condition*5,
+      -2.5,
+      2.5
+    );
+
+  ["kor","math","eng","tam1","tam2"]
+    .forEach(type=>{
+      gs.stats[type]=
+        clamp(
+          gs.stats[type]+bonus+rand(-2,2),
+          0,
+          100
+        );
+    });
+
+  updateUI();
+
+  openModal(
+    "🔔 수능 시험 종료",
+    `
+      <div class="result-box result-pass">
+        2027학년도 수능<br>
+        <b>응시 완료</b>
+      </div>
+
+      <div class="event-small">
+        수능 시험이 끝났습니다.<br>
+        이제 수능 성적 발표를 기다립니다.
+      </div>
+    `,
+    [
+      {
+        text:"📨 성적 발표로 이동",
+        className:"btn",
+        onclick:"closeModal();openCsatResult()"
+      }
+    ]
+  );
+}
+
+function openCsatResult() {
+
+  if(!gs.flags.csat) return;
+  if(gs.flags.csatResult) return;
+
+  gs.eventBusy=true;
+
+  openModal(
+    "📊 수능 성적 발표",
+    `
+      <div class="loading-container">
+        <div class="spinner"></div>
+        <b>수능 성적표를 불러오는 중...</b>
+      </div>
+    `,
+    []
+  );
+
+  setTimeout(()=>{
+
+    gs.flags.csatResult=true;
+    gs.eventBusy=false;
+
+    const avg=getJeongsiScore();
+
+    const grade=
+      avg>=95
+        ? "최상위권"
+        : avg>=90
+          ? "상위권"
+          : avg>=80
+            ? "중상위권"
+            : avg>=70
+              ? "중위권"
+              : "기초권";
+
+    openModal(
+      "📊 수능 성적 발표",
+      `
+        <div class="result-box result-pass">
+
+          수능 평균<br>
+
+          <b style="font-size:1.5rem;">
+            ${avg.toFixed(1)}
+          </b>
+
+          <div class="result-meta">
+            ${grade}
+          </div>
+
+        </div>
+
+        <div class="event-small">
+
+          국어 ${gs.stats.kor.toFixed(1)}<br>
+          수학 ${gs.stats.math.toFixed(1)}<br>
+          영어 ${gs.stats.eng.toFixed(1)}<br>
+          탐구1 ${gs.stats.tam1.toFixed(1)}<br>
+          탐구2 ${gs.stats.tam2.toFixed(1)}
+
+        </div>
+      `,
+      [
+        {
+          text:"계속",
+          className:"btn",
+          onclick:"afterCsatScore()"
+        }
+      ]
+    );
+
+  },1000);
+}
+
+function afterCsatScore() {
+
+  closeModal();
+
+  /*
+    사용자가 수능을 준비한 경우
+    수시 추합 발표가 먼저.
+  */
+
+  if(
+    gs.susiChoice==="csat" &&
+    gs.susiWaitCount>0 &&
+    !gs.flags.susiWait
+  ) {
+    setTimeout(
+      openSusiWaitResult,
+      200
+    );
+    return;
+  }
+
+  /*
+    그 다음 정시 원서
+  */
+
+  if(
+    shouldJeongsi() &&
+    !gs.flags.jeongsiReg
+  ) {
+    setTimeout(
+      ()=>openReg("jeongsi"),
+      200
+    );
+    return;
+  }
+
+  checkTimeline();
+}
+
+
+/* =========================================================
+   JEONGSI
+========================================================= */
+
+function calculateJeongsiOutcome(u) {
+
+  const avg=getJeongsiScore();
+
+  const gap=avg-u.cCut;
+
+  let probability=
+    clamp(
+      .5+gap*.055,
+      .04,
+      .92
+    );
+
+  const compPenalty=
+    1/
+    (
+      1+
+      Math.max(0,u.compJeongsi-5)*.045
+    );
+
+  probability=
+    clamp(
+      probability*compPenalty,
+      .02,
+      .92
+    );
+
+  const pass=
+    Math.random()<probability;
+
+  let wait=false;
+
+  if(!pass) {
+
+    wait=
+      Math.random()<
+      clamp(
+        probability*.45,
+        .05,
+        .4
+      );
+  }
+
+  return {
+    ...u,
+    type:"정시",
+    probability,
+    pass,
+    wait
+  };
+}
+
+function openJeongsiFirstResult() {
+
+  if(!gs.flags.jeongsiReg) return;
+  if(gs.flags.jeongsiResult) return;
+
+  gs.eventBusy=true;
+
+  gs.jeongsiResults=
+    gs.jeongsiCart.map(
+      item=>calculateJeongsiOutcome(item)
+    );
+
+  gs.flags.jeongsiResult=true;
+
+  gs.jeongsiWaitCount=
+    gs.jeongsiResults.filter(x=>x.wait).length;
+
+  let html=`
+    <div class="event-small">
+      📢 <b>정시 최초합격자 발표</b>
+    </div>
+  `;
+
+  gs.jeongsiResults.forEach(r=>{
+
+    html+=`
+      <div class="result-box ${
+        r.pass
+          ? "result-pass"
+          : r.wait
+            ? "result-wait"
+            : "result-fail"
+      }">
+
+        ${r.univ} · ${r.dept}<br>
+
+        <b>
+          ${
+            r.pass
+              ? "🎉 최초합격"
+              : r.wait
+                ? "⏳ 추가합격 대기"
+                : "불합격"
+          }
+        </b>
+
+        <div class="result-meta">
+          수능 기준 ${r.cCut.toFixed(1)}
+          · 내 평균 ${getJeongsiScore().toFixed(1)}
+        </div>
+
+      </div>
+    `;
+  });
+
+  const passed=
+    gs.jeongsiResults.filter(x=>x.pass);
+
+  if(passed.length) {
+
+    openModal(
+      "🎉 정시 최초합격자 발표",
+      html+
+      `
+        <div class="event-small">
+          정시 최초합격 대학이 있습니다.
+        </div>
+      `,
+      [
+        {
+          text:"🏫 학교 등록하기",
+          className:"green-btn secondary-btn",
+          onclick:"registerJeongsi()"
+        },
+        {
+          text:"⏳ 추합 결과까지 보기",
+          className:"orange-btn secondary-btn",
+          onclick:"waitAfterJeongsiFirst()"
+        }
+      ]
+    );
+
+  } else if(gs.jeongsiWaitCount>0) {
+
+    openModal(
+      "📨 정시 최초합격자 발표",
+      html+
+      `
+        <div class="event-small">
+          최초합은 없지만 추합 대기 대학이 있습니다.
+        </div>
+      `,
+      [
+        {
+          text:"⏳ 정시 추합 기다리기",
+          className:"orange-btn secondary-btn",
+          onclick:"waitAfterJeongsiFirst()"
+        }
+      ]
+    );
+
+  } else {
+
+    openModal(
+      "📨 정시 최초합격자 발표",
+      html+
+      `
+        <div class="event-small">
+          정시 최초합 및 추합 대상이 없습니다.
+        </div>
+      `,
+      [
+        {
+          text:"🏁 최종 결과 보기",
+          className:"btn",
+          onclick:"closeModal();showFinalResults()"
+        }
+      ]
+    );
+  }
+}
+
+function waitAfterJeongsiFirst() {
+
+  closeModal();
+
+  if(gs.dday>-6) {
+    gs.dday=-6;
+  }
+
+  updateUI();
+
+  setTimeout(
+    checkTimeline,
+    200
+  );
+}
+
+function registerJeongsi() {
+
+  const u=
+    gs.jeongsiResults.find(
+      x=>x.pass
+    );
+
+  if(!u) return;
+
+  gs.universityChoice=u;
+  gs.registeredJeongsi=true;
+
+  showRegisteredUniversity(u);
+}
+
+function openJeongsiWaitResult() {
+
+  if(
+    !gs.flags.jeongsiResult ||
+    gs.jeongsiWaitCount<=0 ||
+    gs.flags.jeongsiWait
+  ) {
+    return;
+  }
+
+  gs.eventBusy=true;
+
+  const waits=
+    gs.jeongsiResults.filter(
+      x=>x.wait&&!x.pass
+    );
+
+  waits.forEach(r=>{
+    r.extraPass=
+      Math.random()<
+      clamp(
+        r.probability*.65+.1,
+        .1,
+        .5
+      );
+  });
+
+  gs.flags.jeongsiWait=true;
+
+  let html=`
+    <div class="event-small">
+      📢 기다리던 <b>정시 추가합격 발표</b>입니다.
+    </div>
+  `;
+
+  waits.forEach(r=>{
+
+    html+=`
+      <div class="result-box ${
+        r.extraPass
+          ? "result-pass"
+          : "result-fail"
+      }">
+
+        ${r.univ} · ${r.dept}<br>
+
+        <b>
+          ${
+            r.extraPass
+              ? "🎉 추가합격"
+              : "추가합격 불발"
+          }
+        </b>
+
+      </div>
+    `;
+  });
+
+  const extra=
+    waits.find(x=>x.extraPass);
+
+  if(extra) {
+
+    openModal(
+      "🎉 정시 추가합격 발표",
+      html,
+      [
+        {
+          text:"🏫 추가합격 대학 등록",
+          className:"green-btn secondary-btn",
+          onclick:"registerJeongsiExtra()"
+        },
+        {
+          text:"🏁 최종 결과 보기",
+          className:"btn",
+          onclick:"closeModal();showFinalResults()"
+        }
+      ]
+    );
+
+  } else {
+
+    openModal(
+      "📨 정시 추가합격 발표",
+      html,
+      [
+        {
+          text:"🏁 최종 결과 보기",
+          className:"btn",
+          onclick:"closeModal();showFinalResults()"
+        }
+      ]
+    );
+  }
+}
+
+function registerJeongsiExtra() {
+
+  const u=
+    gs.jeongsiResults.find(
+      x=>x.extraPass
+    );
+
+  if(!u) return;
+
+  gs.universityChoice=u;
+  gs.registeredJeongsi=true;
+
+  showRegisteredUniversity(u);
+}
+
+
+/* =========================================================
+   REGISTERED UNIVERSITY
+========================================================= */
+
+function showRegisteredUniversity(u) {
+
+  gs.universityChoice=u;
+  gs.flags.finished=true;
+
+  openModal(
+    "🏫 학교 등록 완료",
+    `
+      <div class="result-box result-pass">
+
+        🎓 ${u.univ}<br>
+
+        <b>${u.dept}</b><br>
+
+        ${u.type}
+
+      </div>
+
+      <div class="event-small">
+
+        ${gs.name}님은
+        <b>${u.univ} ${u.dept}</b>에 등록했습니다.
+
+        <br><br>
+
+        2027학년도 입시가 끝났습니다.
+
+      </div>
+    `,
+    [
+      {
+        text:"🏆 최종 결과 보기",
+        className:"btn",
+        onclick:"finishGameWithUniversity()"
+      }
+    ]
+  );
+}
+
+function finishGameWithUniversity() {
+
+  closeModal();
+
+  showFinalResults();
+}
+
+
+/* =========================================================
+   FINAL
+========================================================= */
+
+function showFinalResults() {
+
+  closeModal();
+
+  gs.flags.finished=true;
+
+  let html="";
+
+  if(gs.universityChoice) {
+
+    const u=gs.universityChoice;
+
+    html+=`
+      <div class="result-box result-pass">
+
+        🏆 최종 등록 대학<br>
+
+        <b style="font-size:1.05rem;">
+          ${u.univ}
+        </b><br>
+
+        ${u.dept}<br>
+
+        ${u.type}
+
+      </div>
+    `;
+
+  } else {
+
+    html+=`
+      <div class="result-box result-fail">
+        이번 입시에서 최종 등록 대학을 결정하지 못했습니다.
+      </div>
+    `;
+  }
+
+  html+=`
+    <div class="event-small">
+
+      <b>📊 최종 수험 기록</b><br><br>
+
+      내신 ${gs.stats.gpa.toFixed(2)}<br>
+      세특 ${Math.round(gs.stats.seteuk)}<br>
+      국어 ${gs.stats.kor.toFixed(1)}<br>
+      수학 ${gs.stats.math.toFixed(1)}<br>
+      영어 ${gs.stats.eng.toFixed(1)}<br>
+      탐구1 ${gs.stats.tam1.toFixed(1)}<br>
+      탐구2 ${gs.stats.tam2.toFixed(1)}<br>
+      수능 평균 ${getJeongsiScore().toFixed(1)}
+
+    </div>
+  `;
+
+  document.getElementById(
+    "finalResultContent"
+  ).innerHTML=html;
+
+  showScreen("resultScreen");
+}
+
+
+/* =========================================================
+   CERTIFICATE
+========================================================= */
+
+function showCertificate() {
+
+  const u=gs.universityChoice;
+
+  const universityText=
+    u
+      ? `${u.univ} ${u.dept}`
+      : "최종 등록 대학 없음";
+
+  openModal(
+    "🏆 수험생 기록",
+    `
+      <div class="certificate">
+
+        <div class="cert-title">
+          수험생 기록증
+        </div>
+
+        <div class="cert-body">
+
+          성명: ${gs.name}<br>
+          계열: ${gs.track}<br><br>
+
+          최종 내신:
+          ${gs.stats.gpa.toFixed(2)}<br>
+
+          세특:
+          ${Math.round(gs.stats.seteuk)}<br>
+
+          수능 평균:
+          ${getJeongsiScore().toFixed(1)}<br><br>
+
+          최종 결과:<br>
+
+          <b>${universityText}</b>
+
+        </div>
+
+        <div class="cert-seal">
+          2027<br>입시
+        </div>
+
+      </div>
+    `,
+    [
+      {
+        text:"닫기",
+        className:"btn",
+        onclick:"closeModal()"
+      }
+    ]
+  );
+}
+
+
+/* =========================================================
+   INITIAL
+========================================================= */
+
+gs.regFilter="all";
+
+updateUI();
+
+</script>
+
+</body>
+</html>
